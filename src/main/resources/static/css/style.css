@@ -2,8 +2,8 @@
   float: right;
 }
 
-.body {
-  padding-top: 70px;
+#main-container {
+  margin-top: 70px;
 }
 
 #search-container {
@@ -11,5 +11,16 @@
   padding:20px;
 }
 
+.card-body {
+  background-color: rgb(214, 214, 214);
+  font-family: 'Open Sans', sans-serif;
+}
 
+#playlist-cards {
+  margin-bottom: 20px;
+  margin-left: 35px;
+}
 
+#crud-playlists {
+  margin-bottom: 10px;
+}
