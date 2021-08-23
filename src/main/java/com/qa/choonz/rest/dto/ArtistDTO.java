@@ -49,9 +49,11 @@ public class ArtistDTO {
 
 	public void setAlbums(List<Album> albums) {
 	  this.albums = new HashMap();
+	  if(albums != null) {
 		for(Album album : albums){
 			this.albums.put(album.getId(), album.getName());
 		}
+	  }
 	}
 
 	@Override

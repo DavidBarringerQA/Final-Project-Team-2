@@ -59,8 +59,10 @@ public class AlbumDTO {
 
 	public void setTracks(List<Track> tracks) {
 		this.tracks = new HashMap<>();
-		for(Track track : tracks){
-			this.tracks.put(track.getId(), track.getName());
+		if(tracks != null) {
+			for(Track track : tracks){
+				this.tracks.put(track.getId(), track.getName());
+			}
 		}
 	}
 
@@ -70,7 +72,9 @@ public class AlbumDTO {
 
 	public void setArtist(Artist artist) {
 		this.artist = new HashMap<>();
-		this.artist.put(artist.getId(), artist.getName());
+		if(artist != null) {
+			this.artist.put(artist.getId(), artist.getName());
+		}
 	}
 
 	public Map<Long, String> getGenre() {
@@ -79,7 +83,9 @@ public class AlbumDTO {
 
 	public void setGenre(Genre genre) {
 		this.genre = new HashMap<>();
-		this.genre.put(genre.getId(), genre.getName());
+		if(genre != null) {
+			this.genre.put(genre.getId(), genre.getName());
+		}
 	}
 
 	public String getCover() {

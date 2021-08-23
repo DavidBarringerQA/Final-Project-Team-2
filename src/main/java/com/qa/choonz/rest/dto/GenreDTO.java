@@ -57,8 +57,10 @@ public class GenreDTO {
 
 	public void setAlbums(List<Album> albums) {
 		this.albums = new HashMap<>();
-		for(Album album : albums){
-			this.albums.put(album.getId(), album.getName());
+		if(albums != null) {
+			for(Album album : albums){
+				this.albums.put(album.getId(), album.getName());
+			}
 		}
 	}
 

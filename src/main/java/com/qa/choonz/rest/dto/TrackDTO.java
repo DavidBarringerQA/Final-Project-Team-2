@@ -24,9 +24,13 @@ public class TrackDTO {
 		this.id = id;
 		this.name = name;
 		this.album = new HashMap<>();
-		this.album.put(album.getId(), album.getName());
+		if(album != null) {
+			this.album.put(album.getId(), album.getName());
+		}
 		this.playlist = new HashMap<>();
-		this.playlist.put(playlist.getId(), playlist.getName());
+		if(playlist != null) {
+			this.playlist.put(playlist.getId(), playlist.getName());
+		}
 		this.duration = duration;
 		this.lyrics = lyrics;
 	}
@@ -53,7 +57,9 @@ public class TrackDTO {
 
 	public void setAlbum(Album album) {
 		this.album = new HashMap<>();
-		this.album.put(album.getId(), album.getName());
+		if(album != null) {
+			this.album.put(album.getId(), album.getName());
+		}
 	}
 
 	public HashMap<Long, String> getPlaylist() {
@@ -62,7 +68,9 @@ public class TrackDTO {
 
 	public void setPlaylist(Playlist playlist) {
 		this.playlist = new HashMap<>();
-		this.playlist.put(playlist.getId(), playlist.getName());
+		if(playlist != null) {
+			this.playlist.put(playlist.getId(), playlist.getName());
+		}
 	}
 
 	public int getDuration() {
