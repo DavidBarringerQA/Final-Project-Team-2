@@ -11,6 +11,11 @@
   padding:20px;
 }
 
+#search-artist {
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+
 .card-body {
   background-color: rgb(214, 214, 214);
   font-family: 'Open Sans', sans-serif;
