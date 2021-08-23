@@ -1,33 +1,26 @@
-body {
-    padding-top: 70px;
+.topnav-right {
+  float: right;
 }
 
-/* ditch the ugle blue outline */
-.navbar-toggler:focus,
-.navbar-toggler:active {
-    outline: 0;
+#main-container {
+  margin-top: 70px;
 }
 
-/* hide close when burger shown */
-.navbar-toggler.collapsed .close-icon {
-    display: none;
+#search-container {
+  margin-top: 100px;
+  padding:20px;
 }
 
-.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
-    display: inline;
-
+.card-body {
+  background-color: rgb(214, 214, 214);
+  font-family: 'Open Sans', sans-serif;
 }
 
-#Search {
-  background-color: white;
-  color: black;
-  border: 2px solid grey;
-  border-radius: 3px;  // for no radius
+#playlist-cards {
+  margin-bottom: 20px;
+  margin-left: 35px;
+}
 
-  }
-
-#Search:hover {
-  background-color: grey;
-  color: white;
-
+#crud-playlists {
+  margin-bottom: 10px;
 }
