@@ -3,6 +3,7 @@ package com.qa.choonz.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,7 @@ public class ArtistUnitTest{
 
 	@Test
 	void testDeleteSuccess(){
+		doNothing().when(repo).deleteById(1L);
 		Mockito.when(repo.existsById(1L)).thenReturn(false);
 
 		assertTrue(service.delete(1L));

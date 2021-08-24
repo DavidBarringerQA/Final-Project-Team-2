@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.ConstraintViolationException;
-import com.qa.choonz.exception.GenreNotFoundException;
+import com.qa.choonz.exception.AlbumNotFoundException;
 import com.qa.choonz.persistence.domain.Album;
+import com.qa.choonz.persistence.domain.Artist;
 import com.qa.choonz.persistence.domain.Genre;
-import com.qa.choonz.persistence.repository.GenreRepository;
-import com.qa.choonz.rest.dto.GenreDTO;
+import com.qa.choonz.persistence.domain.Track;
+import com.qa.choonz.persistence.repository.AlbumRepository;
+import com.qa.choonz.rest.dto.AlbumDTO;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +26,28 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class GenreUnitTest{
+public class AlbumUnitTest{
 
 	@MockBean
-	private GenreRepository repo;
+	private AlbumRepository repo;
 
 	@Autowired
-	private GenreService service;
+	private AlbumService service;
+
+	private Artist artist = new Artist(1L, "ArtistName", new ArrayList<Album>());
+	private Genre genre = new Genre(1L, "GenreName", "GenreDesc", new ArrayList<Album>());
+	private String cover = "cover/path";
 
 	@Test
 	void testCreateSuccess(){
-		Genre item = new Genre();
-		item.setName("NewTestGenre");
-		item.setDescription("NewTestDesc");
-		item.setAlbums(new ArrayList<Album>());
-		Genre result = new Genre(1L, "NewTestGenre", "NewTestDesc", new ArrayList<Album>());
-		GenreDTO expected = new GenreDTO(1L, "NewTestGenre", "NewTestDesc", new ArrayList<Album>());
+		Album item = new Album();
+		item.setName("NewAlbum");
+		item.setArtist(artist);
+		item.setGenre(genre);
+		item.setTracks(new ArrayList<Track>());
+		item.setCover("cover/path");
+		Album result = new Album(1L, "NewAlbum", new ArrayList<Track>(), artist, genre, cover);
+		AlbumDTO expected = new AlbumDTO(1L, "NewAlbum", new ArrayList<Track>(), artist, genre, cover);
 
 		Mockito.when(repo.save(item)).thenReturn(result);
 
@@ -49,10 +57,10 @@ class GenreUnitTest{
 
 	@Test
 	void testReadAll(){
-		List<Genre> result = new ArrayList<>();
-		result.add(new Genre(1L, "TestGenre", "TestDescription", new ArrayList<Album>()));
-		List<GenreDTO> expected = new ArrayList<>();
-		expected.add(new GenreDTO(1L, "TestGenre", "TestDescription", new ArrayList<Album>()));
+		List<Album> result = new ArrayList<>();
+		result.add(new Album(1L, "NewAlbum", new ArrayList<Track>(), artist, genre, cover));
+		List<AlbumDTO> expected = new ArrayList<>();
+		expected.add(new AlbumDTO(1L, "NewAlbum", new ArrayList<Track>(), artist, genre, cover));
 
 		Mockito.when(repo.findAll()).thenReturn(result);
 
@@ -62,8 +70,8 @@ class GenreUnitTest{
 
 	@Test
 	void testReadSingleSuccess(){
-		Genre result = new Genre(1L, "TestGenre", "TestDescription", new ArrayList<Album>());
-		GenreDTO expected = new GenreDTO(1L, "TestGenre", "TestDescription", new ArrayList<Album>());
+		Album result = new Album(1L, "NewAlbum", new ArrayList<Track>(), artist, genre, cover);
+		AlbumDTO expected = new AlbumDTO(1L, "NewAlbum", new ArrayList<Track>(), artist, genre, cover);
 
 		Mockito.when(repo.findById(1L)).thenReturn(Optional.of(result));
 
@@ -73,10 +81,10 @@ class GenreUnitTest{
 
 	@Test
 	void testUpdateSuccess(){
-		Genre item = new Genre(1L, "TestGenre", "TestDescription", new ArrayList<Album>());
-		Genre result = new Genre(1L, "UpdatedName", "UpdatedDesc", new ArrayList<Album>());
-		GenreDTO expected = new GenreDTO(1L, "UpdatedName", "UpdatedDesc", new ArrayList<Album>());
-		
+		Album item = new Album(1L, "TestAlbum", new ArrayList<Track>(), artist, genre, cover);
+		Album result = new Album(1L, "UpdatedName", new ArrayList<Track>(), artist, genre, "new/path");
+		AlbumDTO expected = new AlbumDTO(1L, "UpdatedName", new ArrayList<Track>(), artist, genre, "new/path");
+
 		Mockito.when(repo.findById(1L)).thenReturn(Optional.of(item));
 		Mockito.when(repo.save(result)).thenReturn(result);
 
@@ -97,9 +105,7 @@ class GenreUnitTest{
 
 	@Test
 	void testCreateFail(){
-		Genre item = new Genre();
-		item.setName("NewTestGenre");
-		item.setAlbums(new ArrayList<Album>());
+		Album item = new Album();
 
 		Mockito.when(repo.save(item)).thenThrow(new ConstraintViolationException(null));
 		assertThrows(ConstraintViolationException.class, () -> {
@@ -112,7 +118,7 @@ class GenreUnitTest{
 	void testReadSingleFail(){
 		Mockito.when(repo.findById(2L)).thenReturn(Optional.empty());
 
-		assertThrows(GenreNotFoundException.class, () -> {
+		assertThrows(AlbumNotFoundException.class, () -> {
 				service.read(2L);
 			});
 		Mockito.verify(repo, Mockito.times(1)).findById(2L);
@@ -120,11 +126,11 @@ class GenreUnitTest{
 
 	@Test
 	void testUpdateFailId(){
-		Genre item = new Genre(2L, "UpdatedName", "UpdatedDesc", new ArrayList<Album>());
+		Album item = new Album(2L, "UpdatedName", new ArrayList<Track>(), artist, genre, cover);
 
 		Mockito.when(repo.findById(2L)).thenReturn(Optional.empty());
 
-		assertThrows(GenreNotFoundException.class, () -> {
+		assertThrows(AlbumNotFoundException.class, () -> {
 				service.update(item, 2L);
 			});
 		Mockito.verify(repo, Mockito.times(1)).findById(2L);
@@ -133,8 +139,8 @@ class GenreUnitTest{
 
 	@Test
 	void testUpdateFailValues(){
-		Genre item  = new Genre(1L, "TestGenre", "TestDescription", new ArrayList<Album>());
-		Genre result = new Genre(1L, null, "UpdatedDesc", new ArrayList<Album>());
+		Album item = new Album(1L, "TestAlbum", new ArrayList<Track>(), artist, genre, cover);
+		Album result = new Album(1L, null, new ArrayList<Track>(), artist, genre, cover);
 
 		Mockito.when(repo.findById(1L)).thenReturn(Optional.of(item));
 		Mockito.when(repo.save(result)).thenThrow(new ConstraintViolationException(null));
