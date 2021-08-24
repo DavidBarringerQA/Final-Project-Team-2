@@ -30,6 +30,11 @@
   margin-bottom: 10px;
 }
 
+#crud-genre {
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
 #genre-image {
   /* Full height */
   height: 25vw;
@@ -74,3 +79,5 @@
       linear-gradient(180deg, rgba(254, 163, 170,0) 20%, rgba(254, 163, 170,.4) 20%, rgba(254, 163, 170,.4) 40%, rgba(254, 163, 170,.6) 40%, rgba(254, 163, 170,.6) 60%, rgba(254, 163, 170,.8) 60%, rgba(254, 163, 170,.8) 80%, rgba(254, 163, 170,.9) 80%)
   ;
 }
+
+
