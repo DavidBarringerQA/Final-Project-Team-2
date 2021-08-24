@@ -47,73 +47,90 @@
 
 <body>
   <div id="search-container">
+      <div class="row">
       <div class="col-md-3" style="align-content: left;">
         <div class="input-group" id="search-feature">
-          <input type="search" class="form-control rounded" placeholder="Search playlists..." aria-label="Search"
+          <input type="search" class="form-control rounded" placeholder="Search for genre..." aria-label="Search"
             aria-describedby="search-addon" />
           <button type="button" class="btn btn-outline-success">search</button>
         </div>
       </div>
+      <div class="col-md-6" style="text-align: center;">
+          <h1>Genres</h1>
+      </div>
+    </div>
     </div>
   </div>
   <!-- /Search -->
+  <div class="container">
 
-  <!-- cards -->
-  <div id="playlist-cards">
-    <div class="row">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
 
-      <div class="col-md-3">
-      <div class="card" style="width: 18rem;">
-        <a href="./playlist.html">
-        <img class="card-img-top" src="https://tse3.mm.bing.net/th?id=OIP.VLgdJsQQZnou-ZYZ3ew3oQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-        <div class="card-body">
-          <h4 style="color: black" class="card-title">Playlist name</h4>
-          <h6 style="color: black" class="card-title">Playlist - username</h6>
-        </div>
-      </a>
-      </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-          <a href="#">
-          <img class="card-img-top" src="https://tse3.mm.bing.net/th?id=OIP.VLgdJsQQZnou-ZYZ3ew3oQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-          <div class="card-body">
-            <h4 style="color: black" class="card-title">Playlist name</h4>
-            <h6 style="color: black" class="card-title">Playlist - username</h6>
-          </div>
-        </a>
+    <div class="col">
+        <a href="genreChild.html" class="genre">
+      <div class="card" id="genre-card">
+        <img
+          src="https://tse1.mm.bing.net/th?id=OIP.UjrLxCdBfra8q_tRFiIT7wHaEo&pid=Api&P=0&w=247&h=155"
+          class="card-img-top"
+          alt="..."
+          id="genre-image"
+        />
+        <div class="centered">
+            <h1 style="color: white;">Rock</h1>
         </div>
       </div>
-
-      <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-          <a href="#">
-          <img class="card-img-top" src="https://tse3.mm.bing.net/th?id=OIP.VLgdJsQQZnou-ZYZ3ew3oQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-          <div class="card-body">
-            <h4 style="color: black" class="card-title">Playlist name</h4>
-            <h6 style="color: black" class="card-title">Playlist - username</h6>
-          </div>
-        </a>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-          <a href="#">
-          <img class="card-img-top" src="https://tse3.mm.bing.net/th?id=OIP.VLgdJsQQZnou-ZYZ3ew3oQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-          <div class="card-body">
-            <h4 style="color: black" class="card-title">Playlist name</h4>
-            <h6 style="color: black" class="card-title">Playlist - username</h6>
-          </div>
-        </a>
-        </div>
-      </div>
-
+    </a>
     </div>
-  </div>
-  <!-- /cards -->
-</body>
+
+    <div class="col">
+        <a href="#" class="genre">
+      <div class="card" id="genre-card">
+        <img
+          src="https://tse2.mm.bing.net/th?id=OIP.yhHw75Hjq4ciccucW7aYOAE0DK&pid=Api&P=0&w=260&h=172"
+          class="card-img-top"
+          alt="..."
+          id="genre-image"
+        />
+        <div class="centered">
+            <h1 style="color: white;">Pop</h1>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <div class="col">
+        <a href="#" class="genre">
+      <div class="card" id="genre-card">
+        <img
+          src="https://tse2.mm.bing.net/th?id=OIP.V1YWpZVUiqXP1ao43a_Y1gHaE8&pid=Api&P=0&w=238&h=160"
+          class="card-img-top"
+          alt="..."
+          id="genre-image"
+        />
+        <div class="centered">
+            <h1 style="color: white;">Classic</h1>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <div class="col">
+        <a href="#" class="genre">
+      <div class="card" id="genre-card">
+        <img
+          src="https://tse4.mm.bing.net/th?id=OIP.hN6KB92X5KwMdjznjqI6rgHaFa&pid=Api&P=0&w=234&h=172"
+          class="card-img-top"
+          alt="..."
+          id="genre-image"
+        />
+        <div class="centered">
+            <h1 style="color: white;">Rap</h1>
+        </div>
+      </div>
+    </a>
+    </div>
+
+</div>
 
 <footer>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
