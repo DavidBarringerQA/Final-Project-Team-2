@@ -21,26 +21,30 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+/* images */
 #genre-image {
-  /* Full height */
   height: 25vw;
-
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 #playlist-image {
-  /* Full height */
   height: 25vw;
-
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+#artist-image {
+  height: 25vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* images */
+
+/* cards */
 #genre-card {
   margin: 10px;
   border: lightgray 2pt solid;
@@ -50,6 +54,12 @@
   margin: 10px;
   border: lightgray 2pt solid;
 }
+
+#artist-card {
+  margin: 10px;
+  border: lightgray 2pt solid;
+}
+/* cards */
 
 .centered {
   transition: .5s ease;
@@ -62,6 +72,7 @@
   text-align: center;
 }
 
+/* Hover features */
 .genre:hover .card-img-top {
   opacity: 0.3;
 }
@@ -77,6 +88,15 @@
 .playlist:hover .centered {
   opacity: 1;
 }
+
+.artist:hover .card-img-top {
+  opacity: 0.3;
+}
+
+.artist:hover .centered {
+  opacity: 1;
+}
+/* /Hover features */
 
 .jumbotron {
   background: 
