@@ -104,9 +104,8 @@ public class PlaylistUnitTest{
 		Playlist item = new Playlist();
 
 		Mockito.when(repo.save(item)).thenThrow(new ConstraintViolationException(null));
-		assertThrows(ConstraintViolationException.class, () -> {
-				service.create(item);
-			});
+
+		assertEquals(null, service.create(item));
 		Mockito.verify(repo, Mockito.times(1)).save(item);
 	}
 
@@ -151,9 +150,8 @@ public class PlaylistUnitTest{
 	@Test
 	void testDeleteFail(){
 		doThrow(new EmptyResultDataAccessException(1)).when(repo).deleteById(1L);
-		assertThrows(EmptyResultDataAccessException.class, () -> {
-				service.delete(1L);
-			});
+
+		assertEquals(null, service.delete(1L));
 		Mockito.verify(repo, Mockito.times(1)).deleteById(1L);
 		Mockito.verify(repo, Mockito.times(0)).existsById(1L);
 	}
