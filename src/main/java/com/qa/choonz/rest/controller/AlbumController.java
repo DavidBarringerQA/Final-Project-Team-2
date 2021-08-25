@@ -31,7 +31,12 @@ public class AlbumController {
 
     @PostMapping("/create")
     public ResponseEntity<AlbumDTO> create(@RequestBody Album album) {
+			AlbumDTO result = this.service.create(album);
+			if(result != null){
         return new ResponseEntity<AlbumDTO>(this.service.create(album), HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @GetMapping("/read")
@@ -46,13 +51,24 @@ public class AlbumController {
 
     @PostMapping("/update/{id}")
     public ResponseEntity<AlbumDTO> update(@RequestBody Album album, @PathVariable long id) {
-        return new ResponseEntity<AlbumDTO>(this.service.update(album, id), HttpStatus.ACCEPTED);
+			AlbumDTO result = this.service.update(album, id);
+			System.out.println(result);
+			if(result != null){
+        return new ResponseEntity<AlbumDTO>(result, HttpStatus.ACCEPTED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<AlbumDTO> delete(@PathVariable long id) {
-        return this.service.delete(id) ? new ResponseEntity<AlbumDTO>(HttpStatus.NO_CONTENT)
+			Boolean result = this.service.delete(id);
+			if(result != null){
+        return result ? new ResponseEntity<AlbumDTO>(HttpStatus.NO_CONTENT)
                 : new ResponseEntity<AlbumDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
     }
 
 }
