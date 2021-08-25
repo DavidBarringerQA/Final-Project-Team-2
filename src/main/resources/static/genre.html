@@ -56,7 +56,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" class="form-control" id="delete-id"  placeholder="Enter ID of genre to delete...">
+        <input type="text" class="form-control" id="delete-name"  placeholder="Enter the name of the genre to delete...">
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,11 +78,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" class="form-control" id="update-id"  placeholder="Enter ID of genre to delete...">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of genre to update...">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Update genre name">
+        <input type="text" class="form-control" id="update-description"  placeholder="Update genre description">
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
+        <button id="delete-btn" type="submit" class="btn btn-success">Confirm update</button>
       </div>
     </div>
   </div>
@@ -100,12 +102,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-id"  placeholder="Enter genre name">
-        <input type="text" class="form-control" id="add-id"  placeholder="Enter genre description">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter genre name">
+        <input type="text" class="form-control" id="add-description"  placeholder="Enter genre description">
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="delete-btn" type="submit" class="btn btn-success">Confirm Add</button>
+        <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
       </div>
     </div>
   </div>
@@ -128,6 +130,7 @@
   <script type="text/javascript" src="/static/js/header.js"></script>
   <script type="text/javascript" src="/static/js/genres/genreRead.js"></script>
   <script type="text/javascript" src="/static/js/genres/genreDelete.js"></script>
+  <script type="text/javascript" src="/static/js/genres/genreAdd.js"></script>
 </footer>
 
 </html>

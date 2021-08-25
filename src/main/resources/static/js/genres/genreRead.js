@@ -37,6 +37,7 @@ function readAllItems(data) {
 
     let genreNameDiv = document.createElement("div");
     genreNameDiv.setAttribute("class", "centered");
+    genreNameDiv.setAttribute("id", "genre(" + data[i].id + ")");
 
     let genreName = document.createElement("h1");
     genreName.setAttribute("style", "color: black");
