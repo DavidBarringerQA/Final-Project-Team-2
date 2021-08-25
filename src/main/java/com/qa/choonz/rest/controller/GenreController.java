@@ -62,7 +62,6 @@ public class GenreController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<GenreDTO> delete(@PathVariable long id) {
 			Boolean result = this.service.delete(id);
-			System.out.println(result);
 			if(result != null){
         return result ? new ResponseEntity<GenreDTO>(HttpStatus.NO_CONTENT)
                 : new ResponseEntity<GenreDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
