@@ -29,7 +29,7 @@ function readAllItems(data) {
 
     let image = document.createElement("img");
     image.setAttribute("id", "artist-image");
-    image.setAttribute("src", "/img/artist/" + data[i].name + ".png")
+    image.setAttribute("src", "../img/artist/" + data[i].name + ".png")
     image.setAttribute("alt", "...");
     image.setAttribute("class", "card-img-top");
 
