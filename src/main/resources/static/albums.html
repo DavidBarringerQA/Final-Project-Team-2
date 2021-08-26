@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Choonz Music</title>
+    <div id="header"></div>
+</head>
+
+<body>
+  <div id="main-container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-3">Choonz Albums</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Search -->
+  <div id="search-album">
+    <div class="row">
+    <div class="col-md-3" style="align-content: left;">
+      <div class="input-group" id="search-feature">
+        <input type="search" class="form-control rounded" placeholder="Search for an album..." aria-label="Search"
+          aria-describedby="search-addon" />
+        <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div id="crud-genre">
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add album</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete album</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update album</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- /Search -->
+  
+  <!-- Modal Delete -->
+  <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete an Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="delete-name"  placeholder="Enter the name of the album to delete...">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal Delete -->
+  
+  <!-- Modal Update -->
+  <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update a Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of album to update...">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Enter album name">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-artist"  placeholder="Enter artist id">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-genre"  placeholder="Enter genre id">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-success">Confirm update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal Update -->
+  
+  <!-- Modal Add -->
+  <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add an Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter album name">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-artist"  placeholder="Enter artist id">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-genre"  placeholder="Enter genre id">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal Add -->
+  
+    <div container>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="album-list">
+    </div>
+
+</body>
+
+<footer>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/static/js/header.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumRead.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumAdd.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumUpdate.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumDelete.js"></script>
+</footer>
+
+</html>
