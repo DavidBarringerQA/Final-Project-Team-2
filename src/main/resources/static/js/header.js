@@ -1,4 +1,4 @@
 (function()
 {
-    $("#header").load("/static/header.html");
+    $("#header").load("header.html");
 })(jQuery);

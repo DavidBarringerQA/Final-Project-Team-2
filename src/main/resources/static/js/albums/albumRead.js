@@ -47,7 +47,7 @@ function readAllItems(album, artist) {
 
         let image = document.createElement("img");
         image.setAttribute("id", "album-image");
-        image.setAttribute("src", "/img/albums/" + album.name + ".png")
+        image.setAttribute("src", "../img/albums/" + album.name + ".png")
         image.setAttribute("alt", "...");
         image.setAttribute("class", "card-img-top");
 

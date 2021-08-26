@@ -38,7 +38,7 @@ function readAll(track, album) {
     let image = document.createElement("img");
     console.log(album);
     console.log(track);
-    image.setAttribute("src", "/img/albums/" + album.name + ".png");
+    image.setAttribute("src", "../img/albums/" + album.name + ".png");
     image.setAttribute("alt", "...");
     image.setAttribute("class", "img");
     image.setAttribute("width", "50px");
