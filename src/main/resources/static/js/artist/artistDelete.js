@@ -5,7 +5,7 @@ let delReq = () => {
     console.log(nameEntry);
     for (card of artistCard) {
         console.log(card.querySelector("h1").textContent);
-    if (nameEntry == card.querySelector("h1").textContent) {
+    if (nameEntry.toLowerCase() == card.querySelector("h1").textContent.toLowerCase()) {
         id = card.querySelector(".centered").getAttribute("id").split("(")[1].split(")")[0];
     }
 }

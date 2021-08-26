@@ -16,6 +16,11 @@
   padding-bottom: 15px;
 }
 
+#search-album {
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+
 .card-body {
   background-color: rgb(241, 239, 239);
   font-family: 'Open Sans', sans-serif;
@@ -42,6 +47,13 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+#album-image {
+  height: 25vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 /* images */
 
 /* cards */
@@ -56,6 +68,11 @@
 }
 
 #artist-card {
+  margin: 10px;
+  border: lightgray 2pt solid;
+}
+
+#album-card {
   margin: 10px;
   border: lightgray 2pt solid;
 }
@@ -94,6 +111,14 @@
 }
 
 .artist:hover .centered {
+  opacity: 1;
+}
+
+.album:hover .card-img-top {
+  opacity: 0.3;
+}
+
+.album:hover .centered {
   opacity: 1;
 }
 /* /Hover features */

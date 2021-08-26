@@ -13,92 +13,113 @@
 </head>
 
 <body>
-    <div id="main-container">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1 class="display-3">Choonz Albums</h1>
-                    </div>
+  <div id="main-container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-3">Choonz Albums</h1>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Search -->
-    <div id="search-artist">
-      <div class="row">
-      <div class="col-md-3" style="align-content: left;">
-        <div class="input-group" id="search-feature">
-          <input type="search" class="form-control rounded" placeholder="Search for an album..." aria-label="Search"
-            aria-describedby="search-addon" />
-          <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
-        </div>
+  </div>
+  
+  <!-- Search -->
+  <div id="search-album">
+    <div class="row">
+    <div class="col-md-3" style="align-content: left;">
+      <div class="input-group" id="search-feature">
+        <input type="search" class="form-control rounded" placeholder="Search for an album..." aria-label="Search"
+          aria-describedby="search-addon" />
+        <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
       </div>
-      <div class="col-md-8">
-        <div id="crud-genre">
-        <button type="button" class="btn btn-dark">Add genre</button>
-        <button type="button" class="btn btn-dark">Delete genre</button>
-        <button type="button" class="btn btn-dark">Update genre</button>
+    </div>
+    <div class="col-md-8">
+      <div id="crud-genre">
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add album</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete album</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update album</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- /Search -->
+  
+  <!-- Modal Delete -->
+  <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete an Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="delete-name"  placeholder="Enter the name of the album to delete...">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
         </div>
       </div>
     </div>
-    </div>
-    <!-- /Search -->
-
-    <div id="playlist-cards">
-        <div class="row">
-    
-          <div class="col-md-3">
-          <div class="card" style="width: 18rem;">
-            <a href="./albumChild.html">
-            <img class="card-img-top" src="https://tse4.mm.bing.net/th?id=OIP.446Wo4FOTxlnshvaTyQiFQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-            <div class="card-body">
-                <h4 style="color: black" class="card-title">Album</h4>
-                <h6 style="color: black" class="card-title">List of songs</h6>
-            </div>
-          </a>
-          </div>
-          </div>
-    
-          <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-              <a href="#">
-              <img class="card-img-top" src="https://tse4.mm.bing.net/th?id=OIP.446Wo4FOTxlnshvaTyQiFQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-              <div class="card-body">
-                <h4 style="color: black" class="card-title">Album</h4>
-                <h6 style="color: black" class="card-title">List of songs</h6>
-              </div>
-            </a>
-            </div>
-          </div>
-    
-          <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-              <a href="#">
-              <img class="card-img-top" src="https://tse4.mm.bing.net/th?id=OIP.446Wo4FOTxlnshvaTyQiFQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-              <div class="card-body">
-                <h4 style="color: black" class="card-title">Album</h4>
-                <h6 style="color: black" class="card-title">List of songs</h6>
-              </div>
-            </a>
-            </div>
-          </div>
-    
-          <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-              <a href="#">
-              <img class="card-img-top" src="https://tse4.mm.bing.net/th?id=OIP.446Wo4FOTxlnshvaTyQiFQHaHa&pid=Api&P=0&w=300&h=300" alt="Card image cap">
-              <div class="card-body">
-                <h4 style="color: black" class="card-title">Album</h4>
-                <h6 style="color: black" class="card-title">List of songs</h6>
-              </div>
-            </a>
-            </div>
-          </div>
-    
+  </div>
+  <!-- /Modal Delete -->
+  
+  <!-- Modal Update -->
+  <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update a Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of album to update...">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Enter album name">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-artist"  placeholder="Enter artist id">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-genre"  placeholder="Enter genre id">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-success">Confirm update</button>
         </div>
       </div>
+    </div>
+  </div>
+  <!-- /Modal Update -->
+  
+  <!-- Modal Add -->
+  <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add an Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter album name">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-artist"  placeholder="Enter artist id">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-genre"  placeholder="Enter genre id">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal Add -->
+  
+    <div container>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="album-list">
+    </div>
 
 </body>
 
@@ -111,6 +132,10 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"></script>
   <script type="text/javascript" src="/static/js/header.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumRead.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumAdd.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumUpdate.js"></script>
+  <script type="text/javascript" src="/static/js/albums/albumDelete.js"></script>
 </footer>
 
 </html>

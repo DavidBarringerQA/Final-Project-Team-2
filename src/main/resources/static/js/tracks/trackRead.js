@@ -1,5 +1,3 @@
-let albumData;
-
 fetch(`http://localhost:8082/tracks/read`) 
     .then((response) => {
         if (response.status !== 200) { 
