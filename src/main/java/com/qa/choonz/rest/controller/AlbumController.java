@@ -52,7 +52,6 @@ public class AlbumController {
     @PostMapping("/update/{id}")
     public ResponseEntity<AlbumDTO> update(@RequestBody Album album, @PathVariable long id) {
 			AlbumDTO result = this.service.update(album, id);
-			System.out.println(result);
 			if(result != null){
         return new ResponseEntity<AlbumDTO>(result, HttpStatus.ACCEPTED);
 			} else {
