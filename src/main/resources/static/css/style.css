@@ -21,6 +21,12 @@
   padding-bottom: 15px;
 }
 
+#search-genre-child {
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-bottom: 15px;
+}
+
 .card-body {
   background-color: rgb(241, 239, 239);
   font-family: 'Open Sans', sans-serif;
