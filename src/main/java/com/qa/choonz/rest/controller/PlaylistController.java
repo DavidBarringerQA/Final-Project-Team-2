@@ -31,7 +31,12 @@ public class PlaylistController {
 
     @PostMapping("/create")
     public ResponseEntity<PlaylistDTO> create(@RequestBody Playlist playlist) {
-        return new ResponseEntity<PlaylistDTO>(this.service.create(playlist), HttpStatus.CREATED);
+			PlaylistDTO result = this.service.create(playlist);
+			if(result != null){
+        return new ResponseEntity<PlaylistDTO>(result, HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @GetMapping("/read")
@@ -46,13 +51,23 @@ public class PlaylistController {
 
     @PostMapping("/update/{id}")
     public ResponseEntity<PlaylistDTO> update(@RequestBody Playlist playlist, @PathVariable long id) {
-        return new ResponseEntity<PlaylistDTO>(this.service.update(playlist, id), HttpStatus.ACCEPTED);
+			PlaylistDTO result = this.service.update(playlist, id);
+			if(result != null){
+        return new ResponseEntity<PlaylistDTO>(result, HttpStatus.ACCEPTED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<PlaylistDTO> delete(@PathVariable long id) {
-        return this.service.delete(id) ? new ResponseEntity<PlaylistDTO>(HttpStatus.NO_CONTENT)
+			Boolean result = this.service.delete(id);
+			if(result != null){
+        return result ? new ResponseEntity<PlaylistDTO>(HttpStatus.NO_CONTENT)
                 : new ResponseEntity<PlaylistDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
     }
 
 }

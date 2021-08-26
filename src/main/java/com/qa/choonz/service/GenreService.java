@@ -2,14 +2,15 @@ package com.qa.choonz.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
-
+import javax.validation.ConstraintViolationException;
 import com.qa.choonz.exception.GenreNotFoundException;
 import com.qa.choonz.persistence.domain.Genre;
 import com.qa.choonz.persistence.repository.GenreRepository;
 import com.qa.choonz.rest.dto.GenreDTO;
+import org.modelmapper.ModelMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionSystemException;
 
 @Service
 public class GenreService {
@@ -28,8 +29,12 @@ public class GenreService {
     }
 
     public GenreDTO create(Genre genre) {
+			try{
         Genre created = this.repo.save(genre);
         return this.mapToDTO(created);
+			} catch(ConstraintViolationException e){
+				return null;
+			}
     }
 
     public List<GenreDTO> read() {
@@ -45,13 +50,21 @@ public class GenreService {
         Genre toUpdate = this.repo.findById(id).orElseThrow(GenreNotFoundException::new);
 				toUpdate.setName(genre.getName());
 				toUpdate.setDescription(genre.getDescription());
-        Genre updated = this.repo.save(toUpdate);
-        return this.mapToDTO(updated);
+				try{
+					Genre updated = this.repo.save(toUpdate);
+					return this.mapToDTO(updated);
+				} catch(TransactionSystemException e){
+					return null;
+				}
     }
 
-    public boolean delete(long id) {
+    public Boolean delete(long id) {
+			try{
         this.repo.deleteById(id);
         return !this.repo.existsById(id);
+			} catch(EmptyResultDataAccessException e){
+				return null;
+			}
     }
 
 }
