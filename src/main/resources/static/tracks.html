@@ -76,15 +76,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Update a Genre</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Update a track</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of genre to update...">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Update genre name">
-        <input type="text" class="form-control" id="update-description"  placeholder="Update genre description">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of track to update...">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Enter track name">
+        <input style="margin-bottom: 8px;" type="number" class="form-control" id="update-duration"  placeholder="Enter track duration">
+        <input style="margin-bottom: 8px;" type="text-area" class="form-control" id="update-lyrics"  placeholder="Enter track lyrics">
+        <input style="margin-bottom: 8px;" type="number" class="form-control" id="update-album"  placeholder="Enter album id">
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
