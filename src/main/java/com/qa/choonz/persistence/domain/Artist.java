@@ -30,7 +30,6 @@ public class Artist {
 
 	public Artist() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Artist(long id, @NotNull @Size(max = 100) String name, List<Album> albums) {
@@ -70,7 +69,7 @@ public class Artist {
 		for(Album album : albums){
 			builder.append(album.getName()).append(", ");
 		}
-		if(albums.size() > 0){
+		if(!albums.isEmpty()){
 			builder.delete(builder.length()-2, builder.length());
 		}
 		return builder.append("]").toString();

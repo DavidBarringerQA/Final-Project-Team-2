@@ -6,12 +6,12 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class TrackTest{
+class TrackTest{
 
 	private Track track;
 	
 	@BeforeEach
-	public void setup(){
+	void setup(){
 		Album album = new Album();
 		album.setName("TestAlbum");
 		Playlist playlist = new Playlist();
@@ -20,7 +20,7 @@ public class TrackTest{
 	}
 
 	@Test
-	public void toStringTest(){
+	void toStringTest(){
 		String expected = "Track [id=1, name=TestTrack, album=TestAlbum, playlist=TestPlaylist, duration=100, lyrics=TestLyrics]";
 		String actual = track.toString();
 		assertEquals(expected, actual);

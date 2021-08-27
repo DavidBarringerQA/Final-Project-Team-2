@@ -7,7 +7,7 @@ import com.qa.choonz.persistence.domain.Track;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PlaylistDTOTest{
+class PlaylistDTOTest{
 
 	private PlaylistDTO playlist;
 

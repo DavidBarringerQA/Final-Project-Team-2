@@ -33,7 +33,7 @@ public class ArtistController {
     public ResponseEntity<ArtistDTO> create(@RequestBody Artist artist) {
 			ArtistDTO result = this.service.create(artist);
 			if(result != null){
-        return new ResponseEntity<ArtistDTO>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -41,19 +41,19 @@ public class ArtistController {
 
     @GetMapping("/read")
     public ResponseEntity<List<ArtistDTO>> read() {
-        return new ResponseEntity<List<ArtistDTO>>(this.service.read(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(), HttpStatus.OK);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<ArtistDTO> read(@PathVariable long id) {
-        return new ResponseEntity<ArtistDTO>(this.service.read(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<ArtistDTO> update(@RequestBody Artist artist, @PathVariable long id) {
 			ArtistDTO result = this.service.update(artist, id);
 			if(result != null){
-        return new ResponseEntity<ArtistDTO>(result, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -63,8 +63,8 @@ public class ArtistController {
     public ResponseEntity<ArtistDTO> delete(@PathVariable long id) {
 			Boolean result = this.service.delete(id);
 			if(result != null){
-        return result ? new ResponseEntity<ArtistDTO>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<ArtistDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return result ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

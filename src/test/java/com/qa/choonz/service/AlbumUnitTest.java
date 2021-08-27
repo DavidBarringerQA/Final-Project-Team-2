@@ -26,7 +26,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class AlbumUnitTest{
+class AlbumUnitTest{
 
 	@MockBean
 	private AlbumRepository repo;
