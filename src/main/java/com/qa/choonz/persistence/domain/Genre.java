@@ -35,7 +35,6 @@ public class Genre {
 
 	public Genre() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Genre(long id, @NotNull @Size(max = 100) String name, @NotNull @Size(max = 250) String description,
@@ -53,7 +52,7 @@ public class Genre {
 		for(Album album : albums){
 			builder.append(album.getName()).append(", ");
 		}
-		if(albums.size() > 0){
+		if(!albums.isEmpty()){
 			builder.delete(builder.length()-2, builder.length());
 		}
 		return builder.append("]").toString();

@@ -33,7 +33,7 @@ public class GenreController {
     public ResponseEntity<GenreDTO> create(@RequestBody Genre genre) {
 			GenreDTO result = this.service.create(genre);
 			if(result != null){
-        return new ResponseEntity<GenreDTO>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -41,12 +41,12 @@ public class GenreController {
 
     @GetMapping("/read")
     public ResponseEntity<List<GenreDTO>> read() {
-        return new ResponseEntity<List<GenreDTO>>(this.service.read(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(), HttpStatus.OK);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<GenreDTO> read(@PathVariable long id) {
-        return new ResponseEntity<GenreDTO>(this.service.read(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
@@ -63,8 +63,8 @@ public class GenreController {
     public ResponseEntity<GenreDTO> delete(@PathVariable long id) {
 			Boolean result = this.service.delete(id);
 			if(result != null){
-        return result ? new ResponseEntity<GenreDTO>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<GenreDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return result ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

@@ -39,7 +39,6 @@ public class Album {
 
 	public Album() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Album(long id, @NotNull @Size(max = 100) String name, List<Track> tracks, Artist artist, Genre genre,
@@ -107,7 +106,7 @@ public class Album {
 		for(Track track : tracks){
 			builder.append(track.getName()).append(", ");
 		}
-		if(tracks.size() > 0){
+		if(!tracks.isEmpty()){
 			builder.delete(builder.length()-2, builder.length());
 		}
 		return builder.append("]").toString();

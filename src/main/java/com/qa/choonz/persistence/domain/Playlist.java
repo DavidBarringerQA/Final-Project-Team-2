@@ -40,7 +40,6 @@ public class Playlist {
 
 	public Playlist() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Playlist(long id, @NotNull @Size(max = 100) String name, @NotNull @Size(max = 500) String description,
@@ -99,7 +98,7 @@ public class Playlist {
 		for(Track track : tracks){
 			builder.append(track.getName()).append(", ");
 		}
-		if(tracks.size() > 0){
+		if(!tracks.isEmpty()){
 			builder.delete(builder.length()-2, builder.length());
 		}
 		return builder.append("]").toString();

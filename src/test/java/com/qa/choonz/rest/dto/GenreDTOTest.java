@@ -7,7 +7,7 @@ import com.qa.choonz.persistence.domain.Album;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class GenreDTOTest{
+class GenreDTOTest{
 
 	private GenreDTO genre;
 

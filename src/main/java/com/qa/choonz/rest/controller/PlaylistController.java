@@ -33,7 +33,7 @@ public class PlaylistController {
     public ResponseEntity<PlaylistDTO> create(@RequestBody Playlist playlist) {
 			PlaylistDTO result = this.service.create(playlist);
 			if(result != null){
-        return new ResponseEntity<PlaylistDTO>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -41,19 +41,19 @@ public class PlaylistController {
 
     @GetMapping("/read")
     public ResponseEntity<List<PlaylistDTO>> read() {
-        return new ResponseEntity<List<PlaylistDTO>>(this.service.read(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(), HttpStatus.OK);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<PlaylistDTO> read(@PathVariable long id) {
-        return new ResponseEntity<PlaylistDTO>(this.service.read(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<PlaylistDTO> update(@RequestBody Playlist playlist, @PathVariable long id) {
 			PlaylistDTO result = this.service.update(playlist, id);
 			if(result != null){
-        return new ResponseEntity<PlaylistDTO>(result, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -63,8 +63,8 @@ public class PlaylistController {
     public ResponseEntity<PlaylistDTO> delete(@PathVariable long id) {
 			Boolean result = this.service.delete(id);
 			if(result != null){
-        return result ? new ResponseEntity<PlaylistDTO>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<PlaylistDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return result ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

@@ -6,12 +6,12 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ArtistTest{
+class ArtistTest{
 
 	private Artist artist;
 	
 	@BeforeEach
-	public void setup(){
+	void setup(){
 		Album album = new Album();
 		album.setName("TestAlbum");
 		List<Album> albums = new ArrayList<>();
@@ -20,14 +20,14 @@ public class ArtistTest{
 	}
 
 	@Test
-	public void toStringTest(){
+	void toStringTest(){
 		String expected = "Artist [id=1, name=TestArtist, albums=[TestAlbum]]";
 		String actual = artist.toString();
 		assertEquals(expected, actual);
 	}
 
 	@Test
-	public void toStringEmptyListTest(){
+	void toStringEmptyListTest(){
 		artist.setAlbums(new ArrayList<Album>());
 		String expected = "Artist [id=1, name=TestArtist, albums=[]]";
 		String actual = artist.toString();

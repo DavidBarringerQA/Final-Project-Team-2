@@ -1,6 +1,7 @@
 package com.qa.choonz.rest.dto;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import com.qa.choonz.persistence.domain.Album;
 import com.qa.choonz.persistence.domain.Playlist;
@@ -16,7 +17,6 @@ public class TrackDTO {
 
 	public TrackDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public TrackDTO(long id, String name, Album album, Playlist playlist, int duration, String lyrics){
@@ -51,7 +51,7 @@ public class TrackDTO {
 		this.name = name;
 	}
 
-	public HashMap<Long, String> getAlbum() {
+	public Map<Long, String> getAlbum() {
 		return album;
 	}
 
@@ -62,7 +62,7 @@ public class TrackDTO {
 		}
 	}
 
-	public HashMap<Long, String> getPlaylist() {
+	public Map<Long, String> getPlaylist() {
 		return playlist;
 	}
 

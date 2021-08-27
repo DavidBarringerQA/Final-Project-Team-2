@@ -33,7 +33,7 @@ public class AlbumController {
     public ResponseEntity<AlbumDTO> create(@RequestBody Album album) {
 			AlbumDTO result = this.service.create(album);
 			if(result != null){
-        return new ResponseEntity<AlbumDTO>(this.service.create(album), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.service.create(album), HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -41,19 +41,19 @@ public class AlbumController {
 
     @GetMapping("/read")
     public ResponseEntity<List<AlbumDTO>> read() {
-        return new ResponseEntity<List<AlbumDTO>>(this.service.read(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(), HttpStatus.OK);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<AlbumDTO> read(@PathVariable long id) {
-        return new ResponseEntity<AlbumDTO>(this.service.read(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<AlbumDTO> update(@RequestBody Album album, @PathVariable long id) {
 			AlbumDTO result = this.service.update(album, id);
 			if(result != null){
-        return new ResponseEntity<AlbumDTO>(result, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -63,8 +63,8 @@ public class AlbumController {
     public ResponseEntity<AlbumDTO> delete(@PathVariable long id) {
 			Boolean result = this.service.delete(id);
 			if(result != null){
-        return result ? new ResponseEntity<AlbumDTO>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<AlbumDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return result ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
