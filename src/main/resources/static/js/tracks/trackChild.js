@@ -13,7 +13,7 @@ fetch(`http://localhost:8082/tracks/read/` + trackId)
     }
     ).catch((err) => console.error(`Fetch Error: ${err}`));
 
-function readAll(data, genreName, artistNameText) {
+function readAll(data, genreID, genreName, artistNameText, artistID) {
 
     // Read track name, genre and album to jumbotron
     let mainContainer = document.getElementById("main-container");
@@ -40,11 +40,30 @@ function readAll(data, genreName, artistNameText) {
     let col2 = document.createElement("div");
     col2.setAttribute("class", "col-md-6");
     row2.appendChild(col2);
+    let albumLink = document.createElement("a");
+    albumLink.setAttribute("href", "albumChild.html?id=" + Object.keys(data.album));
     let albumName = document.createElement("h5");
     albumName.setAttribute("class", "display-5");
-    albumName.setAttribute("style", "color: gray")
-    albumName.textContent = Object.values(data.album) + " (" + genreName + ")";
-    col2.appendChild(albumName);
+    albumName.setAttribute("style", "color: gray");
+    albumName.textContent = Object.values(data.album);
+    col2.appendChild(albumLink);
+    albumLink.appendChild(albumName);
+
+    let row4 = document.createElement("div");
+    row4.setAttribute("class", "row");
+    container.appendChild(row4);
+    let col4 = document.createElement("div");
+    col4.setAttribute("class", "col-md-6");
+    row4.appendChild(col4);
+    let genreLink = document.createElement("a");
+    genreLink.setAttribute("href", "genreChild.html?id=" + genreID);
+    let genreNamePrint = document.createElement("h5");
+    genreNamePrint.setAttribute("class", "display-5");
+    genreNamePrint.setAttribute("style", "color: gray");
+    genreNamePrint.textContent = genreName;
+    col4.appendChild(genreLink);
+    genreLink.appendChild(genreNamePrint);
+
 
     let row3 = document.createElement("div");
     row3.setAttribute("class", "row");
@@ -52,11 +71,14 @@ function readAll(data, genreName, artistNameText) {
     let col3 = document.createElement("div");
     col3.setAttribute("class", "col-md-6");
     row3.appendChild(col3);
-    let artistName = document.createElement("h6");
-    artistName.setAttribute("class", "display-6");
-    artistName.setAttribute("style", "color: gray")
-    artistName.textContent = "- " + artistNameText + " -";
-    col3.appendChild(artistName);
+    let artistLink = document.createElement("a");
+    artistLink.setAttribute("href", "artistChild.html?id=" + artistID);
+    let artistNamePrint = document.createElement("h5");
+    artistNamePrint.setAttribute("class", "display-5");
+    artistNamePrint.setAttribute("style", "color: gray");
+    artistNamePrint.textContent = "- " + artistNameText + " -";
+    col3.appendChild(artistLink);
+    artistLink.appendChild(artistNamePrint);
     //
 
     //read lyrics
@@ -90,7 +112,7 @@ function getAlbumGenre(track) {
         return response.json()
     })
     .then(data => {
-        readAll(track, Object.values(data.genre), Object.values(data.artist));
+        readAll(track, Object.keys(data.genre), Object.values(data.genre), Object.values(data.artist), Object.keys(data.artist));
     }
     ).catch((err) => console.error(`Fetch Error: ${err}`));
 }
