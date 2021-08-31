@@ -1,4 +1,40 @@
-fetch(`http://localhost:8082/tracks/read`) 
+const idString = new URLSearchParams(window.location.search)
+let genreId = idString.get('id');
+
+fetch(`http://localhost:8082/genres/read/` + genreId)
+    .then((response) => {
+        if (response.status !== 200) {
+            console.error(`status: ${reponse.status}`);
+            return;
+        }
+        response.json()
+            .then(data => readAllItems(data))
+    }).catch((err) => console.error(`Fetch Error: ${err}`));
+
+function readAllItems(data) {
+
+    // Read genre name to jumbotron
+    let mainContainer = document.getElementById("main-container");
+    let jumbo = document.createElement("div");
+    jumbo.setAttribute("class", "jumbotron jumbotron-fluid");
+    mainContainer.appendChild(jumbo);
+    let container = document.createElement("div");
+    container.setAttribute("class", "container");
+    jumbo.appendChild(container);
+    let row = document.createElement("div");
+    row.setAttribute("class", "row");
+    container.appendChild(row);
+    let col = document.createElement("div");
+    col.setAttribute("class", "col-md-6");
+    row.appendChild(col);
+    let genreName = document.createElement("h4");
+    genreName.setAttribute("class", "display-3");
+    col.appendChild(genreName);
+    genreName.textContent = data.name;
+    
+    }
+
+    fetch(`http://localhost:8082/tracks/read`) 
     .then((response) => {
         if (response.status !== 200) { 
             console.error(`status: ${reponse.status}`);
@@ -27,6 +63,7 @@ function readAlbum(track, id) {
 }
 
 function readAll(track, album) {
+    if(Object.keys(album.genre)[0] == genreId) {
     let container = document.getElementById("track-table");
     let body = document.createElement("tbody");
     container.appendChild(body);
@@ -60,7 +97,7 @@ function readAll(track, album) {
 
     let albumName = document.createElement("td");
     let albumLink = document.createElement("a");
-    albumLink.setAttribute("href", "albumChild.html");
+    albumLink.setAttribute("href", "albumChild.html?id=" + album.id);
     albumLink.setAttribute("style", "color: white; font-size: x-large;")
     albumLink.appendChild(albumName);
     row.appendChild(albumName);
@@ -68,5 +105,5 @@ function readAll(track, album) {
 
     let albumNameText = album.name;
     albumLink.textContent =  albumNameText;
-
+    }
 }
