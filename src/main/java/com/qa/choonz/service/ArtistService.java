@@ -2,14 +2,15 @@ package com.qa.choonz.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
-
+import javax.validation.ConstraintViolationException;
 import com.qa.choonz.exception.ArtistNotFoundException;
 import com.qa.choonz.persistence.domain.Artist;
 import com.qa.choonz.persistence.repository.ArtistRepository;
 import com.qa.choonz.rest.dto.ArtistDTO;
+import org.modelmapper.ModelMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionSystemException;
 
 @Service
 public class ArtistService {
@@ -28,8 +29,12 @@ public class ArtistService {
     }
 
     public ArtistDTO create(Artist artist) {
+			try{
         Artist created = this.repo.save(artist);
         return this.mapToDTO(created);
+			} catch(ConstraintViolationException e){
+				return null;
+			}
     }
 
     public List<ArtistDTO> read() {
@@ -44,13 +49,20 @@ public class ArtistService {
     public ArtistDTO update(Artist artist, long id) {
         Artist toUpdate = this.repo.findById(id).orElseThrow(ArtistNotFoundException::new);
         toUpdate.setName(artist.getName());
-        toUpdate.setAlbums(artist.getAlbums());
-        Artist updated = this.repo.save(toUpdate);
-        return this.mapToDTO(updated);
+				try{
+					Artist updated = this.repo.save(toUpdate);
+					return this.mapToDTO(updated);
+				} catch(TransactionSystemException e){
+					return null;
+				}
     }
 
-    public boolean delete(long id) {
+    public Boolean delete(long id) {
+			try{
         this.repo.deleteById(id);
         return !this.repo.existsById(id);
+			} catch(EmptyResultDataAccessException e){
+				return null;
+			}
     }
 }

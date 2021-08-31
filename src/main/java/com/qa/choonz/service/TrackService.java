@@ -2,14 +2,15 @@ package com.qa.choonz.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
-
+import javax.validation.ConstraintViolationException;
 import com.qa.choonz.exception.TrackNotFoundException;
 import com.qa.choonz.persistence.domain.Track;
 import com.qa.choonz.persistence.repository.TrackRepository;
 import com.qa.choonz.rest.dto.TrackDTO;
+import org.modelmapper.ModelMapper;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionSystemException;
 
 @Service
 public class TrackService {
@@ -28,8 +29,12 @@ public class TrackService {
     }
 
     public TrackDTO create(Track track) {
+			try{
         Track created = this.repo.save(track);
         return this.mapToDTO(created);
+			} catch (ConstraintViolationException e){
+				return null;
+			}
     }
 
     public List<TrackDTO> read() {
@@ -48,13 +53,21 @@ public class TrackService {
         toUpdate.setDuration(track.getDuration());
         toUpdate.setLyrics(track.getLyrics());
         toUpdate.setPlaylist(track.getPlaylist());
-        Track updated = this.repo.save(toUpdate);
-        return this.mapToDTO(updated);
+				try{
+					Track updated = this.repo.save(toUpdate);
+					return this.mapToDTO(updated);
+				} catch (TransactionSystemException e){
+					return null;
+				}
     }
 
-    public boolean delete(long id) {
+    public Boolean delete(long id) {
+			try{
         this.repo.deleteById(id);
         return !this.repo.existsById(id);
+			} catch(EmptyResultDataAccessException e){
+				return null;
+			}
     }
 
 }

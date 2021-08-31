@@ -13,7 +13,6 @@ public class GenreDTO {
 
 	public GenreDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public GenreDTO(long id, String name, String description, List<Album> albums) {

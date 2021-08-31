@@ -31,28 +31,43 @@ public class AlbumController {
 
     @PostMapping("/create")
     public ResponseEntity<AlbumDTO> create(@RequestBody Album album) {
-        return new ResponseEntity<AlbumDTO>(this.service.create(album), HttpStatus.CREATED);
+			AlbumDTO result = this.service.create(album);
+			if(result != null){
+        return new ResponseEntity<>(this.service.create(album), HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @GetMapping("/read")
     public ResponseEntity<List<AlbumDTO>> read() {
-        return new ResponseEntity<List<AlbumDTO>>(this.service.read(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(), HttpStatus.OK);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<AlbumDTO> read(@PathVariable long id) {
-        return new ResponseEntity<AlbumDTO>(this.service.read(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<AlbumDTO> update(@RequestBody Album album, @PathVariable long id) {
-        return new ResponseEntity<AlbumDTO>(this.service.update(album, id), HttpStatus.ACCEPTED);
+			AlbumDTO result = this.service.update(album, id);
+			if(result != null){
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<AlbumDTO> delete(@PathVariable long id) {
-        return this.service.delete(id) ? new ResponseEntity<AlbumDTO>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<AlbumDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+			Boolean result = this.service.delete(id);
+			if(result != null){
+        return result ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
     }
 
 }

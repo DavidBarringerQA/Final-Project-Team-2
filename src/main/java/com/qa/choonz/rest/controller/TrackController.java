@@ -31,27 +31,42 @@ public class TrackController {
 
     @PostMapping("/create")
     public ResponseEntity<TrackDTO> create(@RequestBody Track track) {
-        return new ResponseEntity<TrackDTO>(this.service.create(track), HttpStatus.CREATED);
+			TrackDTO result = this.service.create(track);
+			if(result != null){
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @GetMapping("/read")
     public ResponseEntity<List<TrackDTO>> read() {
-        return new ResponseEntity<List<TrackDTO>>(this.service.read(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(), HttpStatus.OK);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<TrackDTO> read(@PathVariable long id) {
-        return new ResponseEntity<TrackDTO>(this.service.read(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<TrackDTO> update(@RequestBody Track track, @PathVariable long id) {
-        return new ResponseEntity<TrackDTO>(this.service.update(track, id), HttpStatus.ACCEPTED);
+			TrackDTO result = this.service.update(track, id);
+			if(result != null){
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<TrackDTO> delete(@PathVariable long id) {
-        return this.service.delete(id) ? new ResponseEntity<TrackDTO>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<TrackDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+			Boolean result = this.service.delete(id);
+			if(result != null){
+        return result ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
     }
 }
