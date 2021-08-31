@@ -28,7 +28,7 @@ function readArtist(album, id) {
 }
 
 function readAllItems(album, artist) {
-    let container = document.getElementById("album-list");
+        let container = document.getElementById("album-list");
         let col = document.createElement("div");
         col.setAttribute("class", "col");
         container.appendChild(col);
