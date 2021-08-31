@@ -14,15 +14,24 @@
 
 <!-- Search -->
 <body>
-  <div id="search-container">
-      <div class="col-md-3" style="align-content: left;">
-        <div class="input-group" id="search-feature">
-          <input type="search" class="form-control rounded" placeholder="Search playlists..." aria-label="Search"
-            aria-describedby="search-addon" />
-          <button style="margin-left: 6px;" type="button" class="btn btn-dark">search</button>
-        </div>
+  <!-- Search -->
+  <div id="search-playlist">
+    <div class="row">
+    <div class="col-md-3" style="align-content: left;">
+      <div class="input-group" id="search-feature">
+        <input type="search" class="form-control rounded" placeholder="Search for a playlist..." aria-label="Search"
+          aria-describedby="search-addon" />
+        <button style="margin-left: 6px;" type="button" class="btn btn-dark">search</button>
       </div>
     </div>
+    <div class="col-md-8">
+      <div id="crud-genre">
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add playlist</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete playlist</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update playlist</button>
+      </div>
+    </div>
+  </div>
   </div>
   <!-- /Search -->
 
@@ -31,6 +40,73 @@
     <div class="row row-cols-1 row-cols-md-3 g-4" id="playlist-list">
   </div>
   <!-- /cards -->
+
+  <!-- Modal Add -->
+<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add an playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter playlist name">
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal Add -->
+
+<!-- Modal Delete -->
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete a Playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="delete-name"  placeholder="Enter the name of the playlist to delete...">
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal Delete -->
+
+<!-- Modal Update -->
+<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Update a playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of playlist to update...">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Update playlist name">
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="update-btn" type="submit" class="btn btn-success">Confirm update</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal Update -->
 </body>
 
 <footer>
