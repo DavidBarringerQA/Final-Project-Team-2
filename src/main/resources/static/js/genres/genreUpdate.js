@@ -2,7 +2,16 @@ var submit = document.getElementById("update-btn");
 submit.addEventListener("click", updateReq);
 
 function updateReq() {
-    let id = document.querySelector("#update-id").value;
+        let nameEntry = document.querySelector("#update-name").value;
+        let genreCard = document.querySelectorAll("#genre-card");
+        let id = 0;
+        console.log(nameEntry);
+        for (card of genreCard) {
+            console.log(card.querySelector("h1").textContent);
+        if (nameEntry.toLowerCase() == card.querySelector("h1").textContent.toLowerCase()) {
+            id = card.querySelector(".centered").getAttribute("id").split("(")[1].split(")")[0];
+        }
+    }
     const req = new XMLHttpRequest();
     req.open("POST", "http://localhost:8082/genres/update/" + id);
     req.onload = () => {
@@ -12,7 +21,7 @@ function updateReq() {
             console.log("Oops...");
         }
     }
-    var nameVal = $('#update-name').val();
+    var nameVal = $('#new-name').val();
     var descriptionVal = $('#update-description').val();
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");

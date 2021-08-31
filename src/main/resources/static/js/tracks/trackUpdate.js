@@ -31,6 +31,6 @@ function updateReq() {
     console.log(data);
     req.send(JSON.stringify(data));
 
-    // let modal = document.getElementById("close-modal");
-    // modal.click();
+    let modal = document.getElementById("close-modal");
+    modal.click();
 };

@@ -36,7 +36,6 @@ public class Track {
 
     public Track() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public Track(long id, @NotNull @Size(max = 100) String name, Album album, Playlist playlist, int duration,
@@ -101,9 +100,9 @@ public class Track {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Track [id=").append(id).append(", name=").append(name).append(", album=").append(album)
-                .append(", playlist=").append(playlist).append(", duration=").append(duration).append(", lyrics=")
-                .append(lyrics).append("]");
+        builder.append("Track [id=").append(id).append(", name=").append(name).append(", album=").append(album.getName())
+					.append(", playlist=").append(playlist.getName()).append(", duration=").append(duration).append(", lyrics=")
+					.append(lyrics).append("]");
         return builder.toString();
     }
 

@@ -26,7 +26,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class AlbumUnitTest{
+class AlbumUnitTest{
 
 	@MockBean
 	private AlbumRepository repo;
@@ -108,9 +108,8 @@ public class AlbumUnitTest{
 		Album item = new Album();
 
 		Mockito.when(repo.save(item)).thenThrow(new ConstraintViolationException(null));
-		assertThrows(ConstraintViolationException.class, () -> {
-				service.create(item);
-			});
+		
+		assertEquals(null, service.create(item));
 		Mockito.verify(repo, Mockito.times(1)).save(item);
 	}
 
@@ -155,9 +154,7 @@ public class AlbumUnitTest{
 	@Test
 	void testDeleteFail(){
 		doThrow(new EmptyResultDataAccessException(1)).when(repo).deleteById(1L);
-		assertThrows(EmptyResultDataAccessException.class, () -> {
-				service.delete(1L);
-			});
+	  assertEquals(null, service.delete(1L));
 		Mockito.verify(repo, Mockito.times(1)).deleteById(1L);
 		Mockito.verify(repo, Mockito.times(0)).existsById(1L);
 	}

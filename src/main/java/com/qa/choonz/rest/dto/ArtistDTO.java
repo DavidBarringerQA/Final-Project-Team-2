@@ -14,7 +14,6 @@ public class ArtistDTO {
 
 	public ArtistDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ArtistDTO(long id, String name, List<Album> albums) {
@@ -48,7 +47,7 @@ public class ArtistDTO {
 	}
 
 	public void setAlbums(List<Album> albums) {
-	  this.albums = new HashMap();
+	  this.albums = new HashMap<>();
 	  if(albums != null) {
 		for(Album album : albums){
 			this.albums.put(album.getId(), album.getName());

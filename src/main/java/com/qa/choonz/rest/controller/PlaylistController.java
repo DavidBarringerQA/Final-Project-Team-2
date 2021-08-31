@@ -31,28 +31,43 @@ public class PlaylistController {
 
     @PostMapping("/create")
     public ResponseEntity<PlaylistDTO> create(@RequestBody Playlist playlist) {
-        return new ResponseEntity<PlaylistDTO>(this.service.create(playlist), HttpStatus.CREATED);
+			PlaylistDTO result = this.service.create(playlist);
+			if(result != null){
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @GetMapping("/read")
     public ResponseEntity<List<PlaylistDTO>> read() {
-        return new ResponseEntity<List<PlaylistDTO>>(this.service.read(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(), HttpStatus.OK);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<PlaylistDTO> read(@PathVariable long id) {
-        return new ResponseEntity<PlaylistDTO>(this.service.read(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.read(id), HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
     public ResponseEntity<PlaylistDTO> update(@RequestBody Playlist playlist, @PathVariable long id) {
-        return new ResponseEntity<PlaylistDTO>(this.service.update(playlist, id), HttpStatus.ACCEPTED);
+			PlaylistDTO result = this.service.update(playlist, id);
+			if(result != null){
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<PlaylistDTO> delete(@PathVariable long id) {
-        return this.service.delete(id) ? new ResponseEntity<PlaylistDTO>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<PlaylistDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
+			Boolean result = this.service.delete(id);
+			if(result != null){
+        return result ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+                : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
     }
 
 }

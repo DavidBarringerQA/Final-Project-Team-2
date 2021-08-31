@@ -16,7 +16,7 @@ function readAllItems(data) {
     container.appendChild(col);
 
     let link = document.createElement("a");
-    link.setAttribute("href", "playlist.html")
+    link.setAttribute("href", "playlist.html?id=" + data[i].id)
     link.setAttribute("class", "playlist");
 
     col.appendChild(link);

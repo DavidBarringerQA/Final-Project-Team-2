@@ -6,7 +6,7 @@ let delReq = () => {
     let tracks = trackTable.querySelectorAll(".tracks");
     for (t of tracks) {
         console.log(t.textContent);
-    if (nameEntry == t.textContent) {
+    if (nameEntry.toLowerCase() == t.textContent.toLowerCase()) {
         id = t.getAttribute("id");
     }
 }
