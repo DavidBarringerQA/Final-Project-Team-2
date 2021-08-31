@@ -1,7 +1,7 @@
 const idString = new URLSearchParams(window.location.search)
-let albumId = idString.get('id');
+let playlistId = idString.get('id');
 
-fetch(`http://localhost:8082/albums/read/` + albumId)
+fetch(`http://localhost:8082/playlists/read/` + playlistId)
     .then((response) => {
         if (response.status !== 200) {
             console.error(`status: ${reponse.status}`);
@@ -13,7 +13,7 @@ fetch(`http://localhost:8082/albums/read/` + albumId)
 
 function readAllItems(data) {
 
-    // Read album name to jumbotron
+    // Read playlist name to jumbotron
     let mainContainer = document.getElementById("main-container");
     let jumbo = document.createElement("div");
     jumbo.setAttribute("class", "jumbotron jumbotron-fluid");
@@ -27,44 +27,35 @@ function readAllItems(data) {
     let col = document.createElement("div");
     col.setAttribute("class", "col-md-12");
     row.appendChild(col);
-    let albumName = document.createElement("h4");
-    albumName.setAttribute("class", "display-3");
-    col.appendChild(albumName);
-    albumName.textContent = data.name;
-
-    let artistLink = document.createElement("a");
-    artistLink.setAttribute("href", "artistChild.html?id=" + Object.keys(data.artist));
-    let artistNamePrint = document.createElement("h5");
-    artistNamePrint.setAttribute("class", "display-5");
-    artistNamePrint.setAttribute("style", "color: gray");
-    artistNamePrint.textContent = Object.values(data.artist);
-    col.appendChild(artistLink);
-    artistLink.appendChild(artistNamePrint);
+    let playlistName = document.createElement("h4");
+    playlistName.setAttribute("class", "display-3");
+    col.appendChild(playlistName);
+    playlistName.textContent = data.name;
 
     // image
-    let subContainer = document.getElementById("album-list");
+    let subContainer = document.getElementById("playlist-list");
     let subCol = document.createElement("div");
     subCol.setAttribute("class", "col");
     subContainer.appendChild(subCol);
     let link = document.createElement("a");
     link.setAttribute("href", "#")
-    link.setAttribute("class", "album");
+    link.setAttribute("class", "playlist");
     subCol.appendChild(link);
     let card = document.createElement("div");
     card.setAttribute("class", "card");
-    card.setAttribute("id", "album-card");
+    card.setAttribute("id", "playlist-card");
     link.appendChild(card);
     let image = document.createElement("img");
-    image.setAttribute("id", "album-image");
-    image.setAttribute("src", "../img/albums/" + data.name + ".png")
+    image.setAttribute("id", "playlist-image");
+    image.setAttribute("src", "../img/playlist/" + data.artwork + ".png")
     image.setAttribute("alt", "...");
     image.setAttribute("class", "card-img-top");
     card.appendChild(image);
-    let albumNameDiv = document.createElement("div");
-    albumNameDiv.setAttribute("class", "centered");
-    albumNameDiv.setAttribute("id", "album(" + data.id + ")");
-    let albumNameCard = document.createElement("h1");
-    albumNameCard.setAttribute("style", "color: black");
+    let playlistNameDiv = document.createElement("div");
+    playlistNameDiv.setAttribute("class", "centered");
+    playlistNameDiv.setAttribute("id", "album(" + data.id + ")");
+    let playlistNameCard = document.createElement("h1");
+    playlistNameCard.setAttribute("style", "color: black");
 
     }
 
@@ -81,8 +72,8 @@ function readAllItems(data) {
     function readTracks(data) {
     //read tracks
     for(i = 0; i < data.length; i++) {
-    if (Object.keys(data[i].album) == albumId) {
-    let songCol = document.getElementById("album-songs");
+    if (Object.keys(data[i].playlist) == playlistId) {
+    let songCol = document.getElementById("playlist-songs");
     let list = document.createElement("div");
     list.setAttribute("class", "list-group");
     list.setAttribute("id", "list-tab");
