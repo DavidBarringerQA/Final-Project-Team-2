@@ -2,7 +2,16 @@ var submit = document.getElementById("update-btn");
 submit.addEventListener("click", updateReq);
 
 function updateReq() {
-    let id = document.querySelector("#update-id").value;
+    let nameEntry = document.querySelector("#old-name").value;
+    let albumCard = document.querySelectorAll("#album-card");
+    let id = 0;
+    console.log(nameEntry);
+    for (card of albumCard) {
+        console.log(card.querySelector("h1").textContent);
+    if (nameEntry.toLowerCase() == card.querySelector("h1").textContent.toLowerCase()) {
+        id = card.querySelector(".centered").getAttribute("id").split("(")[1].split(")")[0];
+    }
+}
     const req = new XMLHttpRequest();
     req.open("POST", "http://localhost:8082/albums/update/" + id);
     req.onload = () => {
@@ -14,8 +23,10 @@ function updateReq() {
     }
 
     var nameVal = $('#update-name').val();
-    var artistVal = parseInt($('#update-artist').val());
-    var genreVal = $('#update-genre').val();
+    var artist = document.getElementById("read-artists-update");
+    var artistVal = artist.options[artist.selectedIndex].value;
+    var genre = document.getElementById("read-genres-update");
+    var genreVal = genre.options[genre.selectedIndex].value;
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     let data = {
@@ -31,6 +42,6 @@ function updateReq() {
     console.log(data);
     req.send(JSON.stringify(data));
 
-    let modal = document.getElementById("close-modal");
-    modal.click();
+    // let modal = document.getElementById("close-modal");
+    // modal.click();
 };

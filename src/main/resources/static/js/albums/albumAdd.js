@@ -12,8 +12,10 @@ function postReq() {
         }
     }
     var nameVal = $('#add-name').val();
-    var artistVal = parseInt($('#add-artist').val());
-    var genreVal = $('#add-genre').val();
+    var artist = document.getElementById("read-artists-add");
+    var artistVal = artist.options[artist.selectedIndex].value;
+    var genre = document.getElementById("read-genres-add");
+    var genreVal = genre.options[genre.selectedIndex].value;
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     let data = {
