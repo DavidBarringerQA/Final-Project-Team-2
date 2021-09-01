@@ -47,11 +47,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception{
-		httpSecurity.csrf().disable()
-			.authorizeRequests().antMatchers("/**/read", "/login", "/register").permitAll();
+		// httpSecurity.csrf().disable()
+		// 	.authorizeRequests()
+		// 	.antMatchers("/", "/tracks", "/artists", "/playlists", "/albums",
+		// 																	 "/**/read", "/login", "/signup", "/h2", "/auth",
+		// 																	 "/index.html",
+		// 																	 "/login.html", "/register", "/h2").permitAll()
+		// 	.anyRequest().authenticated();
 		httpSecurity.authorizeRequests()
 			.antMatchers("/**/create", "/**/update", "/**/delete").hasRole("USER")
-			.antMatchers("/auth").permitAll()
+			.antMatchers("/", "/tracks", "/artists", "/playlists", "/albums", "/css/**",
+									 "/img/**", "/js/**", "/header.html",
+									 "/index.html", "/artists.html",
+									 "/**/read", "/login", "/signup", "/h2", "/auth",
+									 "/register", "/h2").permitAll()
+			//			.antMatchers().permitAll()
 			.anyRequest().authenticated()
 			// .and().exceptionHandling()
 			// .authenticationEntryPoint(unauthorizedHandler)
