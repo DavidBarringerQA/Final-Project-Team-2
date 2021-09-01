@@ -14,7 +14,8 @@ function postReq() {
     var nameVal = $('#add-name').val();
     var durationVal = parseInt($('#add-duration').val());
     var lyricsVal = $('#add-lyrics').val();
-    var albumVal = parseInt($('#add-album').val());
+    var album = document.getElementById("add-album");
+    var albumVal = album.options[album.selectedIndex].value;
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     let data = {
