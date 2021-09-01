@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="./css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Choonz Music</title>
-    <div id="header"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="./css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <title>Choonz Music</title>
+  <div id="header"></div>
 </head>
 
 <body>
   <div id="main-container">
     <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1 class="display-3">Choonz Albums</h1>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="display-3">Choonz Albums</h1>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-  
+
   <!-- Search -->
   <div id="search-album">
     <div class="row">
-    <div class="col-md-3" style="align-content: left;">
-      <div class="input-group" id="search-feature">
-        <input type="search" class="form-control rounded" placeholder="Search for an album..." aria-label="Search"
-          aria-describedby="search-addon" />
-        <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
+      <div class="col-md-3" style="align-content: left;">
+        <div class="input-group" id="search-feature">
+          <input type="search" class="form-control rounded" placeholder="Search for an album..." aria-label="Search"
+            aria-describedby="search-addon" />
+          <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div id="crud-genre">
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add album</button>
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete
+            album</button>
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update
+            album</button>
+        </div>
       </div>
     </div>
-    <div class="col-md-8">
-      <div id="crud-genre">
-      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add album</button>
-      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete album</button>
-      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update album</button>
-      </div>
-    </div>
-  </div>
   </div>
   <!-- /Search -->
 
@@ -50,9 +52,10 @@
   <div class="row row-cols-1 row-cols-md-3 g-4" id="album-list">
   </div>
   <!-- /Album cards -->
-  
+
   <!-- Modal Delete -->
-  <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -62,105 +65,157 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control" id="delete-name"  placeholder="Enter the name of the album to delete...">
+          <input type="text" class="form-control" id="delete-name"
+            placeholder="Enter the name of the album to delete...">
         </div>
         <div class="modal-footer">
-          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="delete-inputs" type="submit" class="btn btn-danger" data-toggle="modal"
+          data-target="#ModalDeleteConfirmation" data-dismiss="modal">Delete</button>
         </div>
       </div>
     </div>
   </div>
-  <!-- /Modal Delete -->
-  
-  <!-- Modal Update -->
-  <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="ModalDeleteConfirmation" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Update a Album</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete the following album?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of album to update...">
-          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Enter album name">
-          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-artist"  placeholder="Enter artist id">
-          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-genre"  placeholder="Enter genre id">
+          <p id="delete-entry"></p>
         </div>
         <div class="modal-footer">
-          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="update-btn" type="submit" class="btn btn-success">Confirm update</button>
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Modal Delete -->
+
+  <!-- Modal Update -->
+  <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update an Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="old-name"
+            placeholder="Insert the name of the album you wish to update...">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"
+            placeholder="Enter album name">
+          <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px"
+            id="read-artists-update">
+            <option selected disabled>Choose an artist</option>
+          </select>
+
+          <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px" id="read-genres-update">
+            <option selected disabled>Choose a genre</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="update-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalUpdateConfirmation" data-dismiss="modal">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ModalUpdateConfirmation" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to update the following album?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><b>Selected: </b></p>
+          <p id="album-name-old"></p>
+          <p><b>Updated to: </b></p>
+          <p id="album-name-update"></p>
+          <p id="artist-name-update"></p>
+          <p id="genre-name-update"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-success">Confirm Update</button>
         </div>
       </div>
     </div>
   </div>
   <!-- /Modal Update -->
-  
+
   <!-- Modal Add -->
   <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add an Album</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"
-          placeholder="Enter album name">
-          <div class="dropdown">
-          <button style="margin-bottom: 8px; width: 100%;" class="btn btn-secondary dropdown-toggle" type="button" id="artist-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Artist
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add an Album</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
-          <div id="read-artists" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <h6 class="dropdown-header">Artists</h6>
-          </div>
-          </div>
-          <div class="dropdown">
-            <button style="margin-bottom: 8px; width: 100%;" class="btn btn-secondary dropdown-toggle" type="button" id="genre-dropdown-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Genre
-            </button>
-            <div id="read-genres" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <h6 class="dropdown-header">Genres</h6>
-            </div>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
-          data-dismiss="modal">Close</button>
-        <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
-          data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"
+            placeholder="Enter album name">
+          <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px" id="read-artists-add">
+            <option selected disabled>Choose an artist</option>
+          </select>
+
+          <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px" id="read-genres-add">
+            <option selected disabled>Choose a genre</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following album?</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p id="album-name"></p>
-      <p id="artist-name"></p>
-      <p id="genre-name"></p>
-    </div>
-    <div class="modal-footer">
-      <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
-        data-dismiss="modal">Close</button>
-        <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+  <div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following album?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="album-name"></p>
+          <p id="artist-name"></p>
+          <p id="genre-name"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
   <!-- /Modal Add -->
 
 
@@ -169,11 +224,11 @@ aria-hidden="true">
 <footer>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"></script>
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"></script>
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
   <script type="text/javascript" src="../js/header.js"></script>
   <script type="text/javascript" src="../js/albums/albumRead.js"></script>
   <script type="text/javascript" src="../js/albums/albumAdd.js"></script>
@@ -181,7 +236,7 @@ aria-hidden="true">
   <script type="text/javascript" src="../js/albums/albumDelete.js"></script>
   <script type="text/javascript" src="../js/albums/albumModal.js"></script>
   <script type="text/javascript" src="../js/albums/albumDropdowns.js"></script>
-  
+
 </footer>
 
 </html>
