@@ -20,4 +20,13 @@ public class RouteContoller {
         return "tracks.html";
     }
 
+    @GetMapping(value = "/login")
+    public String login() {
+    	return "login.html";
+    }
+    
+    @GetMapping(value = "/signup")
+    public String signup() {
+    	return "signup.html";
+    }
 }
