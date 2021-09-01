@@ -64,11 +64,33 @@
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
+        <button id="delete-inputs" type="submit" class="btn btn-danger" data-toggle="modal"
+          data-target="#ModalDeleteConfirmation" data-dismiss="modal">Delete</button>
       </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="ModalDeleteConfirmation" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete the following track?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="delete-entry"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- /Modal Delete -->
 
 <!-- Modal Update -->
@@ -82,19 +104,50 @@
         </button>
       </div>
       <div class="modal-body">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of track to update...">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="old-track"
+            placeholder="Insert the name of the track you wish to update...">
         <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Enter track name">
         <input style="margin-bottom: 8px;" type="number" class="form-control" id="update-duration"  placeholder="Enter track duration">
         <textarea style="margin-bottom: 8px;" class="form-control" id="update-lyrics" rows="5" placeholder="Enter track lyrics"></textarea>
-        <input style="margin-bottom: 8px;" type="number" class="form-control" id="update-album"  placeholder="Enter album id">
+        <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px" id="update-album">
+          <option selected disabled>Choose an album</option>
+        </select>
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="update-btn" type="submit" class="btn btn-success">Confirm update</button>
+        <button id="update-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalUpdateConfirmation" data-dismiss="modal">Update</button>
       </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="ModalUpdateConfirmation" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to update the following album?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><b>Selected: </b></p>
+          <p id="track-name-old"></p>
+          <p><b>Updated to: </b></p>
+          <p id="track-name-update"></p>
+          <p id="track-duration-update"></p>
+          <p id="track-lyric-update"></p>
+          <p id="track-album-update"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-success">Confirm Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- /Modal Update -->
 
 <!-- Modal Add -->
@@ -111,15 +164,42 @@
         <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter track name">
         <input style="margin-bottom: 8px;" type="number" class="form-control" id="add-duration"  placeholder="Enter track duration">
         <textarea style="margin-bottom: 8px;" class="form-control" id="add-lyrics" rows="5" placeholder="Enter track lyrics"></textarea>
-        <input style="margin-bottom: 8px;" type="number" class="form-control" id="add-album"  placeholder="Enter album id">
+        <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px" id="add-album">
+          <option selected disabled>Choose an album</option>
+        </select>
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+        <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
       </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following album?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="track-name"></p>
+          <p id="track-duration"></p>
+          <p id="track-lyrics"></p>
+          <p id="track-album"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- /Modal Add -->
 
 </body>
@@ -137,6 +217,8 @@
     <script type="text/javascript" src="../js/tracks/trackAdd.js"></script>
     <script type="text/javascript" src="../js/tracks/trackDelete.js"></script>
     <script type="text/javascript" src="../js/tracks/trackUpdate.js"></script>
+    <script type="text/javascript" src="../js/tracks/trackModal.js"></script>
+    <script type="text/javascript" src="../js/tracks/trackDropdowns.js"></script>
 </footer>
 
 </html>
