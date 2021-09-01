@@ -22,26 +22,40 @@ fetch(`http://localhost:8082/artists/read`)
 
 function readAllArtists(data) {
 
-    let dropdownArtist = document.getElementById("read-artists");
+    let dropdownArtist = document.getElementById("read-artists-add");
     for (i = 0; i < data.length; i++) {
-        let select = document.createElement("a");
-        select.setAttribute("class", "dropdown-item dropdown-item-secondary");
-        select.setAttribute("id", data[i].id);
-        select.textContent = data[i].name;
-        dropdownArtist.appendChild(select);
+        let option = document.createElement("option");
+        option.setAttribute("value", data[i].id);
+        option.textContent = data[i].name;
+        dropdownArtist.appendChild(option);
+    }
+
+    let dropdownArtistUpdate = document.getElementById("read-artists-update");
+    for (i = 0; i < data.length; i++) {
+        let optionUpdate = document.createElement("option");
+        optionUpdate.setAttribute("value", data[i].id);
+        optionUpdate.textContent = data[i].name;
+        dropdownArtistUpdate.appendChild(optionUpdate);
     }
 
 };
 
 function readAllGenres(genre_data) {
 
-    let dropdownGenre = document.getElementById("read-genres");
+    let dropdownGenre = document.getElementById("read-genres-add");
     for (i = 0; i < genre_data.length; i++) {
-        let selection = document.createElement("a");
-        selection.setAttribute("class", "dropdown-item dropdown-item-secondary");
-        selection.setAttribute("id", genre_data[i].id);
-        selection.textContent = genre_data[i].name;
-        dropdownGenre.appendChild(selection);
+        let option = document.createElement("option");
+        option.setAttribute("value", genre_data[i].id);
+        option.textContent = genre_data[i].name;
+        dropdownGenre.appendChild(option);
+    }
+
+    let dropdownGenreUpdate = document.getElementById("read-genres-update");
+    for (i = 0; i < genre_data.length; i++) {
+        let optionUpdate = document.createElement("option");
+        optionUpdate.setAttribute("value", genre_data[i].id);
+        optionUpdate.textContent = genre_data[i].name;
+        dropdownGenreUpdate.appendChild(optionUpdate);
     }
 
 };
