@@ -45,6 +45,7 @@ function readAll(track, album) {
     header.appendChild(image);
 
     let songName = document.createElement("td");
+    songName.setAttribute("id", "track-elements");
     let link = document.createElement("a");
     link.setAttribute("id", track.id);
     link.setAttribute("class", "tracks");
