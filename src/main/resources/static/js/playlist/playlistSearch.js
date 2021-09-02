@@ -15,9 +15,13 @@ function myFunction() {
 
 function readFromSearch(data) {
     // Declare variables
+    let results = false;
     var input, filter, parent;
     input = document.getElementById('search-input');
     filter = input.value.toLowerCase();
+
+    for(let i = 0; i < data.length; i++) {
+    if(data[i].name.toLowerCase() == filter) {
 
     searchList = document.getElementById("search-list");
     playlistList = document.getElementById("playlist-list");
@@ -25,11 +29,10 @@ function readFromSearch(data) {
     parent = document.getElementById("body-container");
     parent.replaceChild(searchList, playlistList);
     let container = document.getElementById("search-list");
-
-    for(let i = 0; i < data.length; i++) {
-    console.log("data i to lower case: " + data[i].name.toLowerCase());
-    console.log("filter entry: " + filter)
-    if(data[i].name.toLowerCase() == filter) {
+    
+    results = true;
+    let searchBarRow = document.getElementById("no-results");
+    searchBarRow.setAttribute("style", "display: none");
     console.log("I met the if statement: " + data[i].name.toLowerCase());
     let col = document.createElement("div");
     col.setAttribute("class", "col");
@@ -75,6 +78,15 @@ function readFromSearch(data) {
     }
 }
 
+if(!results) {
+    feedbackToUser();
+}
+
+}
+
+function feedbackToUser() {
+    let searchBarRow = document.getElementById("no-results");
+    searchBarRow.setAttribute("style", "display: inline");
 }
   
   
