@@ -31,8 +31,8 @@
       <div class="col-md-3" style="align-content: left;">
         <div class="input-group" id="search-feature">
           <input type="search" class="form-control rounded" placeholder="Search for an album..." aria-label="Search"
-            aria-describedby="search-addon" />
-          <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
+              aria-describedby="search-addon" id="search-input" />
+            <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-outline-dark">search</button>
         </div>
       </div>
       <div class="col-md-8">
@@ -49,7 +49,9 @@
   <!-- /Search -->
 
   <!-- Album cards -->
-  <div class="row row-cols-1 row-cols-md-3 g-4" id="album-list">
+  <div id="body-container">
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="album-list"></div>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="search-list"></div>
   </div>
   <!-- /Album cards -->
 
@@ -236,6 +238,7 @@
   <script type="text/javascript" src="../js/albums/albumDelete.js"></script>
   <script type="text/javascript" src="../js/albums/albumModal.js"></script>
   <script type="text/javascript" src="../js/albums/albumDropdowns.js"></script>
+  <script type="text/javascript" src="../js/albums/albumSearch.js"></script>
 
 </footer>
 

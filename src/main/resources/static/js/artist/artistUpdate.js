@@ -15,6 +15,7 @@ function updateReq() {
     const req = new XMLHttpRequest();
     console.log(id);
     req.open("POST", "http://localhost:8082/artists/update/" + id);
+		req.setRequestHeader("Authorization", `Bearer ${localStorage.getItem("token")}`);
     req.onload = () => {
         if (req.status === 202) {
             console.log("Server Responded with: " + req.responseText);

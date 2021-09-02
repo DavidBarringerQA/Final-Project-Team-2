@@ -14,6 +14,7 @@ function postReq() {
     var nameVal = $('#add-name').val();
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.setRequestHeader("Authorization", `Bearer ${localStorage.getItem("token")}`);
     let data = { name: nameVal };
     req.send(JSON.stringify(data));
 

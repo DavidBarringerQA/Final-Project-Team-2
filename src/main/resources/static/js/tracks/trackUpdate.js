@@ -29,6 +29,7 @@ function updateReq() {
     var albumVal = album.options[album.selectedIndex].value;
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.setRequestHeader("Authorization", `Bearer ${localStorage.getItem("token")}`);
     let data = {
          "id": id,
          "name": nameVal, 
