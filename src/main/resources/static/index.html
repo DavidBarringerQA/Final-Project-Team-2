@@ -20,8 +20,8 @@
     <div class="col-md-3" style="align-content: left;">
       <div class="input-group" id="search-feature">
         <input type="search" class="form-control rounded" placeholder="Search for a playlist..." aria-label="Search"
-          aria-describedby="search-addon" />
-        <button style="margin-left: 6px;" type="button" class="btn btn-dark">search</button>
+          aria-describedby="search-addon" id="search-input" />
+        <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-dark">search</button>
       </div>
     </div>
     <div class="col-md-8">
@@ -32,12 +32,16 @@
       </div>
     </div>
   </div>
+  <div style="display: none" id="no-results">
+    <p>No results found</p>
+  </div>
   </div>
   <!-- /Search -->
 
   <!-- cards -->
-  <div container>
-    <div class="row row-cols-1 row-cols-md-3 g-4" id="playlist-list">
+  <div id="body-container">
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="playlist-list"></div>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="search-list"></div>
   </div>
   <!-- /cards -->
 
@@ -198,6 +202,7 @@
   <script type="text/javascript" src="../js/playlist/playlistModal.js"></script>
   <script type="text/javascript" src="../js/playlist/playlistDelete.js"></script>
   <script type="text/javascript" src="../js/playlist/playlistUpdate.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistSearch.js"></script>
 </footer>
 
 <style>
