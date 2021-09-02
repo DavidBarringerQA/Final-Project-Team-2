@@ -8,15 +8,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.choonz.persistence.domain.Album;
-import com.qa.choonz.persistence.domain.Artist;
-import com.qa.choonz.persistence.domain.Genre;
+import com.qa.choonz.persistence.domain.AuthenticationRequest;
 import com.qa.choonz.persistence.domain.Playlist;
 import com.qa.choonz.persistence.domain.Track;
-import com.qa.choonz.rest.dto.ArtistDTO;
-import com.qa.choonz.rest.dto.ArtistDTO;
-import com.qa.choonz.rest.dto.GenreDTO;
 import com.qa.choonz.rest.dto.PlaylistDTO;
+import com.qa.choonz.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -40,7 +37,18 @@ class PlaylistIntegrationTest{
 	private MockMvc mock;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	private ObjectMapper mapper;
+
+	private String token;
+
+	@BeforeEach
+	void setup() throws Exception{
+		AuthenticationRequest req = new AuthenticationRequest("user", "pass");
+		token = userService.login(req).getToken();
+	}
 
 	@Test
 	void testCreateSuccess() throws Exception{
@@ -51,6 +59,7 @@ class PlaylistIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/playlists/create")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		PlaylistDTO expected = new PlaylistDTO(2L, "NewPlaylist", "NewDesc", "artwork/path", new ArrayList<Track>());
 		String expectedJSON = mapper.writeValueAsString(expected);
@@ -86,6 +95,7 @@ class PlaylistIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/playlists/update/1")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		PlaylistDTO expected = new PlaylistDTO(1L, "UpdatedName", "UpdatedDesc", "UpdatedArt", new ArrayList<Track>());
 		String expectedJSON = mapper.writeValueAsString(expected);
@@ -96,7 +106,8 @@ class PlaylistIntegrationTest{
 
 	@Test
 	void testDeleteSuccess() throws Exception{
-		RequestBuilder mockRequest = delete("/playlists/delete/1");
+		RequestBuilder mockRequest = delete("/playlists/delete/1")
+			.header("Authorization", "Bearer " + token);
 		ResultMatcher matchStatus = status().isNoContent();
 		mock.perform(mockRequest).andExpect(matchStatus);
 	}
@@ -107,6 +118,7 @@ class PlaylistIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/playlists/create")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isBadRequest();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -125,6 +137,7 @@ class PlaylistIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/playlists/update/2")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isNotFound();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -136,6 +149,7 @@ class PlaylistIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/playlists/update/1")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isBadRequest();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -143,7 +157,8 @@ class PlaylistIntegrationTest{
 
 	@Test
 	void testDeleteFail() throws Exception{
-		RequestBuilder mockRequest = delete("/playlists/delete/2");
+		RequestBuilder mockRequest = delete("/playlists/delete/2")
+			.header("Authorization", "Bearer " + token);
 		ResultMatcher matchStatus = status().isNotFound();
 		mock.perform(mockRequest).andExpect(matchStatus);
 	}
