@@ -28,6 +28,7 @@ function readAllItems(data) {
     col.setAttribute("class", "col-md-12");
     row.appendChild(col);
     let playlistName = document.createElement("h4");
+    playlistName.setAttribute("id", data.id);
     playlistName.setAttribute("class", "display-3");
     col.appendChild(playlistName);
     playlistName.textContent = data.name;
