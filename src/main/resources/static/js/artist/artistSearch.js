@@ -18,18 +18,21 @@ function readFromSearch(data) {
     var input, filter, parent;
     input = document.getElementById('search-input');
     filter = input.value.toLowerCase();
-
-    searchList = document.getElementById("search-list");
-    artistList = document.getElementById("artist-list");
-
-    parent = document.getElementById("body-container");
-    parent.replaceChild(searchList, artistList);
-    let container = document.getElementById("search-list");
+    let results = false;
 
     for(let i = 0; i < data.length; i++) {
     console.log("data i to lower case: " + data[i].name.toLowerCase());
     console.log("filter entry: " + filter)
     if(data[i].name.toLowerCase() == filter) {
+    results = true;
+    let searchBarRow = document.getElementById("no-results");
+    searchBarRow.setAttribute("style", "display: none");
+    let searchList = document.getElementById("search-list");
+    let artistList = document.getElementById("artist-list");
+    
+    parent = document.getElementById("body-container");
+    parent.replaceChild(searchList, artistList);
+    let container = document.getElementById("search-list");
     console.log("I met the if statement: " + data[i].name.toLowerCase());
     let col = document.createElement("div");
     col.setAttribute("class", "col");
@@ -75,6 +78,16 @@ function readFromSearch(data) {
     }
 }
 
+if(!results) {
+    feedbackToUser();
 }
+
+}
+
+function feedbackToUser() {
+    let searchBarRow = document.getElementById("no-results");
+    searchBarRow.setAttribute("style", "display: inline");
+}
+
   
   
