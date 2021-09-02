@@ -26,6 +26,7 @@ function updateReq() {
     var descriptionVal = $('#update-description').val();
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.setRequestHeader("Authorization", `Bearer ${localStorage.getItem("token")}`);
     let data = { id: id, name: nameVal, description: descriptionVal, artwork: nameVal };
     req.send(JSON.stringify(data));
     let modal = document.getElementById("close-modal");

@@ -15,6 +15,8 @@ import com.qa.choonz.persistence.domain.Track;
 import com.qa.choonz.rest.dto.ArtistDTO;
 import com.qa.choonz.rest.dto.ArtistDTO;
 import com.qa.choonz.rest.dto.GenreDTO;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -39,6 +41,13 @@ class ArtistIntegrationTest{
 
 	@Autowired
 	private ObjectMapper mapper;
+
+	private String token;
+
+	@BeforeEach
+	void setup(){
+		
+	}
 
 	@Test
 	void testCreateSuccess() throws Exception{

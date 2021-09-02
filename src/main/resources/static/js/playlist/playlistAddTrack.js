@@ -39,6 +39,7 @@ const req = new XMLHttpRequest();
     console.log(trackData);
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.setRequestHeader("Authorization", `Bearer ${localStorage.getItem("token")}`);
     let data = {
          "id": trackId,
          "name": trackData.name, 
