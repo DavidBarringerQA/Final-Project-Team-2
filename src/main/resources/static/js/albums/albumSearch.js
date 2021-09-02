@@ -12,14 +12,19 @@ function myFunction() {
     })
         .then(data => {
             console.log(data);
+            let results = false;
             for(let i = 0; i < data.length; i++) {
                 let input = document.getElementById('search-input');
                 let filter = input.value.toLowerCase();
                 console.log("Data i name: " + data[i].name);
                 console.log("entry name: " + filter);
                 if(filter == data[i].name.toLowerCase()){
+                results = true;
                 readArtistSearch(data[i], Object.keys(data[i].artist)[0]);
                 }
+            }
+            if(!results) {
+                feedbackToUser();
             }
         }
     ).catch((err) => console.error(`Fetch Error: ${err}`));
@@ -45,6 +50,8 @@ function readAllItemsSearch(album, artist) {
     let searchList = document.getElementById("search-list");
     let albumList = document.getElementById("album-list")
     let parent = document.getElementById("body-container");
+    let searchBarRow = document.getElementById("no-results");
+    searchBarRow.setAttribute("style", "display: none");
 
     console.log(parent);
     console.log(searchList);
@@ -94,6 +101,13 @@ function readAllItemsSearch(album, artist) {
         albumArtist.textContent = albumArtistText;
         albumName.textContent = albumNameText;
     
-}
-
-
+        if(!results) {
+            feedbackToUser();
+        }
+        
+        }
+        
+        function feedbackToUser() {
+            let searchBarRow = document.getElementById("no-results");
+            searchBarRow.setAttribute("style", "display: inline");
+        }

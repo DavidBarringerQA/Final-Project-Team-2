@@ -64,6 +64,7 @@ class UserUnitTest{
 	@Test
 	void testLoginSuccess(){
 		String hashedPass = new BCryptPasswordEncoder().encode("TestPass");
+	  System.out.println(new BCryptPasswordEncoder().encode("pass"));
 		ChoonzUser item = new ChoonzUser(1L, "TestName", hashedPass, "ROLE_USER");
 		AuthenticationRequest req = new AuthenticationRequest("TestName", "TestPass");
 		List<SimpleGrantedAuthority> roles = Arrays.asList(new SimpleGrantedAuthority(item.getRole()));

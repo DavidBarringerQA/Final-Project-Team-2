@@ -43,6 +43,8 @@ function readAlbumSearch(track, id) {
 function readFromSearch(track, album) {
     let searchList = document.getElementById("search-list");
     let trackTable = document.getElementById("track-table");
+    let searchBarRow = document.getElementById("no-results");
+    searchBarRow.setAttribute("style", "display: none");
 
     parent = document.getElementById("body-container");
     parent.replaceChild(searchList, trackTable);
@@ -92,13 +94,8 @@ function readFromSearch(track, album) {
 }
 
 function feedbackToUser() {
-    let searchBarRow = document.getElementById("search-artist");
-    let feedbackCol = document.createElement("div");
-    feedbackCol.setAttribute("class", "col-md-4");
-    searchBarRow.appendChild(feedbackCol); 
-    let feedback = document.createElement("p");
-    feedback.textContent = "No results found";
-    feedbackCol.appendChild(feedback); 
+    let searchBarRow = document.getElementById("no-results");
+    searchBarRow.setAttribute("style", "display: inline");
 }
 
 
