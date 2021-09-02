@@ -10,7 +10,10 @@ let delReq = () => {
     }
 }
     fetch("http://localhost:8082/playlists/delete/" + id, {
-        method: 'DELETE'
+        method: 'DELETE',
+				headers: {
+						"Authorization": `Bearer ${localStorage.getItem("token")}`
+				}
     }).then((data) => {
         if (data.status === 204) {
             console.log("delete success");

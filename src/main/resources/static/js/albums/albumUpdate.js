@@ -29,6 +29,7 @@ function updateReq() {
     var genreVal = genre.options[genre.selectedIndex].value;
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.setRequestHeader("Authorization", `Bearer ${localStorage.getItem("token")}`);
     let data = {
          "cover": nameVal, 
          "name": nameVal, 

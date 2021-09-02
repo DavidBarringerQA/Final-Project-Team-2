@@ -15,6 +15,7 @@ function postReq() {
     var descriptionVal = $('#add-description').val();
 
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		req.setRequestHeader("Authorization", `Bearer ${localStorage.getItem("token")}`);
     let data = { name: nameVal, description: descriptionVal };
     req.send(JSON.stringify(data));
 
