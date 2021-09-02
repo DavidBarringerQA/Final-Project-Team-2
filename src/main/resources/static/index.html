@@ -20,8 +20,8 @@
     <div class="col-md-3" style="align-content: left;">
       <div class="input-group" id="search-feature">
         <input type="search" class="form-control rounded" placeholder="Search for a playlist..." aria-label="Search"
-          aria-describedby="search-addon" />
-        <button style="margin-left: 6px;" type="button" class="btn btn-dark">search</button>
+          aria-describedby="search-addon" id="search-input" />
+        <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-dark">search</button>
       </div>
     </div>
     <div class="col-md-8">
@@ -32,12 +32,16 @@
       </div>
     </div>
   </div>
+  <div style="display: none" id="no-results">
+    <p>No results found</p>
+  </div>
   </div>
   <!-- /Search -->
 
   <!-- cards -->
-  <div container>
-    <div class="row row-cols-1 row-cols-md-3 g-4" id="playlist-list">
+  <div id="body-container">
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="playlist-list"></div>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="search-list"></div>
   </div>
   <!-- /cards -->
 
@@ -46,21 +50,45 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add an playlist</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Add a playlist</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter playlist name">
+        <textarea style="margin-bottom: 8px;" class="form-control" id="add-description" rows="3" placeholder="Enter playlist description"></textarea>
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+        <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
       </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following playlist?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="playlist-name-add"></p>
+          <p id="playlist-description-add"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="add-btn" type="submit" class="btn btn-success">Confirm add</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- /Modal Add -->
 
 <!-- Modal Delete -->
@@ -78,7 +106,29 @@
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
+        <button id="delete-inputs" type="submit" class="btn btn-danger" data-toggle="modal"
+            data-target="#ModalDeleteConfirmation" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalDeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete the following playlist?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="delete-entry"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm Delete</button>
       </div>
     </div>
   </div>
@@ -96,12 +146,41 @@
         </button>
       </div>
       <div class="modal-body">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of playlist to update...">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Update playlist name">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-old-name"
+            placeholder="Insert the name of the playlist to be updated">
+            <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"
+            placeholder="Update playlist name">
+          <input type="text" class="form-control" id="update-description" placeholder="Update playlist description">
       </div>
       <div class="modal-footer">
         <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="update-btn" type="submit" class="btn btn-success">Confirm update</button>
+        <button id="update-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalUpdateConfirmation" data-dismiss="modal">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalUpdateConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to run the following updates?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>To: </b></p>
+        <p id="old-name"></p>
+        <p><b>Updates: </b></p>
+        <p id="update-to"></p>
+        <p id="update-des"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-success">Confirm Update</button>
       </div>
     </div>
   </div>
@@ -119,6 +198,12 @@
       crossorigin="anonymous"></script>
   <script type="text/javascript" src="../js/header.js"></script>
   <script type="text/javascript" src="../js/playlist/playlistRead.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistAdd.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistModal.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistDelete.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistUpdate.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistSearch.js"></script>
+  <script type="text/javascript" src="../js/cancelSearch.js"></script>
 </footer>
 
 <style>

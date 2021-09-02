@@ -37,7 +37,7 @@ function readAllItems(data) {
 
     let artistNameDiv = document.createElement("div");
     artistNameDiv.setAttribute("class", "centered");
-    artistNameDiv.setAttribute("id", "artist(" + data[i].id + ")");
+    artistNameDiv.setAttribute("id", data[i].id);
 
     let artistName = document.createElement("h1");
     artistName.setAttribute("style", "color: black");

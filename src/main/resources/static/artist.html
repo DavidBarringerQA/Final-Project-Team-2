@@ -28,32 +28,134 @@
     <!-- Search -->
     <div id="search-artist">
       <div class="row">
-      <div class="col-md-3" style="align-content: left;">
-        <div class="input-group" id="search-feature">
-          <input type="search" class="form-control rounded" placeholder="Search for an artist..." aria-label="Search"
-            aria-describedby="search-addon" />
-          <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
+        <div class="col-md-3" style="align-content: left;">
+          <div class="input-group" id="search-feature">
+            <input type="search" class="form-control rounded" placeholder="Search for an artist..." aria-label="Search"
+              aria-describedby="search-addon" id="search-input" />
+            <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-outline-dark">search</button>
+          </div>
         </div>
-      </div>
       <div class="col-md-8">
-        <div id="crud-genre">
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add artist</button>
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete artist</button>
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update artist</button>
-        </div>
       </div>
+    </div>
+    <div style="display: none" id="no-results">
+      <p>No results found</p>
     </div>
     </div>
     <!-- /Search -->
 
     <!-- cards -->
-    <div container>
-      <div class="row row-cols-1 row-cols-md-3 g-4" id="artist-list">
+    <div id="body-container">
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="artist-list"></div>
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="search-list"></div>
     </div>
     <!-- /cards -->
 
-    <!-- Modal Add -->
-<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <!-- Modal Delete -->
+  <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete an Artist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="delete-name"
+          placeholder="Enter the name of the aritst to delete...">
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="delete-inputs" type="submit" class="btn btn-danger" data-toggle="modal"
+          data-target="#ModalDeleteConfirmation" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalDeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete the following artist?</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p id="delete-entry"></p>
+    </div>
+    <div class="modal-footer">
+      <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+        data-dismiss="modal">Close</button>
+        <button id="delete-btn" type="submit" class="btn btn-danger">Confirm Delete</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- /Modal Delete -->
+
+<!-- Modal Update -->
+<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Update an Artist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"
+          placeholder="Insert the name of artist to be updated">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="new-name"
+          placeholder="Update the artist name">
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="update-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+          data-target="#ModalUpdateConfirmation" data-dismiss="modal">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalUpdateConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to run the following updates?</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p><b>Selected: </b></p>
+      <p id="old-name"></p>
+      <p><b>Updated to: </b></p>
+      <p id="update-to"></p>
+    </div>
+    <div class="modal-footer">
+      <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+        data-dismiss="modal">Close</button>
+        <button id="update-btn" type="submit" class="btn btn-success">Confirm Update</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- /Modal Update -->
+
+<!-- Modal Add -->
+<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,61 +165,40 @@
         </button>
       </div>
       <div class="modal-body">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter artist name">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"
+          placeholder="Enter artist name">
       </div>
       <div class="modal-footer">
-        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+        <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+          data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following artist?</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p id="artist-name"></p>
+    </div>
+    <div class="modal-footer">
+      <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+        data-dismiss="modal">Close</button>
         <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
-      </div>
     </div>
   </div>
 </div>
-<!-- /Modal Add -->
-
-<!-- Modal Delete -->
-<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Delete a Artist</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" id="delete-name"  placeholder="Enter the name of the artist to delete...">
-      </div>
-      <div class="modal-footer">
-        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="delete-btn" type="submit" class="btn btn-danger">Confirm deletion</button>
-      </div>
-    </div>
-  </div>
 </div>
-<!-- /Modal Delete -->
-
-<!-- Modal Update -->
-<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Update a Artist</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-id"  placeholder="Enter ID of artist to update...">
-        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"  placeholder="Update artist name">
-      </div>
-      <div class="modal-footer">
-        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button id="update-btn" type="submit" class="btn btn-success">Confirm update</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- /Modal Update -->
+  <!-- /Modal Add -->
 
 </body>
 
@@ -134,6 +215,8 @@
   <script type="text/javascript" src="../js/artist/artistCreate.js"></script>
   <script type="text/javascript" src="../js/artist/artistDelete.js"></script>
   <script type="text/javascript" src="../js/artist/artistUpdate.js"></script>
+  <script type="text/javascript" src="../js/artist/artistModal.js"></script>
+  <script type="text/javascript" src="../js/artist/artistSearch.js"></script>
 </footer>
 
 </html>

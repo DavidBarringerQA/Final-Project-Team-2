@@ -37,7 +37,7 @@ function readAllItems(data) {
 
     let playlistNameDiv = document.createElement("div");
     playlistNameDiv.setAttribute("class", "centered");
-    playlistNameDiv.setAttribute("id", "playlist(" + data[i].id + ")");
+    playlistNameDiv.setAttribute("id", data[i].id);
 
     let playlistName = document.createElement("h1");
     playlistName.setAttribute("style", "color: black");

@@ -3,11 +3,11 @@ INSERT INTO GENRE VALUES (2, 'Pop is fun', 'Pop');
 INSERT INTO GENRE VALUES (3, 'Country is happy', 'Country');
 INSERT INTO GENRE VALUES (4, 'Rap is powerful', 'Rap');
 
-INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (1, 'Relaxing Playlist', 'Chill songs for people who can’t chill ', 'Relaxing');
-INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (2, 'Morning Playlist', 'Songs to sing in the shower to', 'Morning');
-INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (3, 'Summertime Playlist', 'Feel Good Songs', 'Summertime');
-INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (4, 'Workout Playlist', 'listen to this playlist for a Non-Stop Workout. Music is energy!', 'Workout');
-INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (5, 'Happy Playlist', 'listen to this playlist for a happy feeling... Be positive!', 'Happy');
+INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (1, 'Relaxing', 'Chill songs for people who can’t chill ', 'Relaxing');
+INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (2, 'Morning', 'Songs to sing in the shower to', 'Morning');
+INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (3, 'Summertime', 'Feel Good Songs', 'Summertime');
+INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (4, 'Workout', 'listen to this playlist for a Non-Stop Workout. Music is energy!', 'Workout');
+INSERT INTO PLAYLIST (`id`, `name`, `description`, `artwork`) VALUES (5, 'Happy', 'listen to this playlist for a happy feeling... Be positive!', 'Happy');
 
 INSERT INTO `artist` (`id`, `name`) VALUES (1, 'Arctic Monkeys');
 INSERT INTO `artist` (`id`, `name`) VALUES (2, 'Dave');
