@@ -28,13 +28,13 @@
     <!-- Search -->
     <div id="search-artist">
       <div class="row">
-      <div class="col-md-3" style="align-content: left;">
-        <div class="input-group" id="search-feature">
-          <input type="search" class="form-control rounded" placeholder="Search for an artist..." aria-label="Search"
-            aria-describedby="search-addon" />
-          <button style="margin-left: 6px;" type="button" class="btn btn-outline-dark">search</button>
+        <div class="col-md-3" style="align-content: left;">
+          <div class="input-group" id="search-feature">
+            <input type="search" class="form-control rounded" placeholder="Search for an artist..." aria-label="Search"
+              aria-describedby="search-addon" id="search-input" />
+            <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-dark">search</button>
+          </div>
         </div>
-      </div>
       <div class="col-md-8">
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add artist</button>
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete artist</button>
@@ -45,8 +45,9 @@
     <!-- /Search -->
 
     <!-- cards -->
-    <div container>
-      <div class="row row-cols-1 row-cols-md-3 g-4" id="artist-list">
+    <div id="body-container">
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="artist-list"></div>
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="search-list"></div>
     </div>
     <!-- /cards -->
 
@@ -212,6 +213,7 @@ aria-hidden="true">
   <script type="text/javascript" src="../js/artist/artistDelete.js"></script>
   <script type="text/javascript" src="../js/artist/artistUpdate.js"></script>
   <script type="text/javascript" src="../js/artist/artistModal.js"></script>
+  <script type="text/javascript" src="../js/artist/artistSearch.js"></script>
 </footer>
 
 </html>
