@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.choonz.persistence.domain.Album;
+import com.qa.choonz.persistence.domain.AuthenticationRequest;
 import com.qa.choonz.persistence.domain.Playlist;
 import com.qa.choonz.persistence.domain.Track;
 import com.qa.choonz.rest.dto.TrackDTO;
+import com.qa.choonz.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,14 +38,20 @@ class TrackIntegrationTest{
 	private MockMvc mock;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	private ObjectMapper mapper;
 
 
 	private Playlist playlist;
 	private Album album;
+	private String token;
 	
 	@BeforeEach
 	void setup(){
+		AuthenticationRequest req = new AuthenticationRequest("user", "pass");
+		token = userService.login(req).getToken();
 	  album = new Album();
 		album.setId(1L);
 		album.setName("TestAlbum");
@@ -63,6 +71,7 @@ class TrackIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/tracks/create")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		TrackDTO expected = new TrackDTO(2L, "NewTrack", album, playlist, 200, "NewLyrics");
 		String expectedJSON = mapper.writeValueAsString(expected);
@@ -81,6 +90,7 @@ class TrackIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/tracks/create")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		TrackDTO expected = new TrackDTO(2L, "NewTrack", album, null, 200, "NewLyrics");
 		String expectedJSON = mapper.writeValueAsString(expected);
@@ -116,6 +126,7 @@ class TrackIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/tracks/update/1")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		TrackDTO expected = new TrackDTO(1L, "UpdatedName", album, null, 300, "UpdatedLyrics");
 		String expectedJSON = mapper.writeValueAsString(expected);
@@ -126,7 +137,8 @@ class TrackIntegrationTest{
 
 	@Test
 	void testDeleteSuccess() throws Exception{
-		RequestBuilder mockRequest = delete("/tracks/delete/1");
+		RequestBuilder mockRequest = delete("/tracks/delete/1")
+			.header("Authorization", "Bearer " + token);
 		ResultMatcher matchStatus = status().isNoContent();
 		mock.perform(mockRequest).andExpect(matchStatus);
 	}
@@ -137,6 +149,7 @@ class TrackIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/tracks/create")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isBadRequest();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -155,6 +168,7 @@ class TrackIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/tracks/update/2")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isNotFound();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -166,6 +180,7 @@ class TrackIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/tracks/update/1")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isBadRequest();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -173,7 +188,8 @@ class TrackIntegrationTest{
 
 	@Test
 	void testDeleteFail() throws Exception{
-		RequestBuilder mockRequest = delete("/tracks/delete/2");
+		RequestBuilder mockRequest = delete("/tracks/delete/2")
+			.header("Authorization", "Bearer " + token);
 		ResultMatcher matchStatus = status().isNotFound();
 		mock.perform(mockRequest).andExpect(matchStatus);
 	}

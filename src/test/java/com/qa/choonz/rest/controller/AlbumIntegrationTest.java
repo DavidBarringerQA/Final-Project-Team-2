@@ -10,13 +10,11 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.choonz.persistence.domain.Album;
 import com.qa.choonz.persistence.domain.Artist;
+import com.qa.choonz.persistence.domain.AuthenticationRequest;
 import com.qa.choonz.persistence.domain.Genre;
-import com.qa.choonz.persistence.domain.Playlist;
 import com.qa.choonz.persistence.domain.Track;
 import com.qa.choonz.rest.dto.AlbumDTO;
-import com.qa.choonz.rest.dto.ArtistDTO;
-import com.qa.choonz.rest.dto.GenreDTO;
-import com.qa.choonz.rest.dto.PlaylistDTO;
+import com.qa.choonz.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +39,15 @@ class AlbumIntegrationTest{
 	private MockMvc mock;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	private ObjectMapper mapper;
 
 
 	private Genre gen;
 	private Artist art;
+	private String token;
 	
 	@BeforeEach
 	void setup(){
@@ -55,6 +57,8 @@ class AlbumIntegrationTest{
 		art = new Artist();
 		art.setId(1L);
 		art.setName("TestArtist");
+		AuthenticationRequest req = new AuthenticationRequest("user", "pass");
+		token = userService.login(req).getToken();
 	}
 
 	@Test
@@ -67,6 +71,7 @@ class AlbumIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/albums/create")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		AlbumDTO expected = new AlbumDTO(2L, "NewAlbum", new ArrayList<Track>(), art, gen, "NewCover");
 		String expectedJSON = mapper.writeValueAsString(expected);
@@ -102,6 +107,7 @@ class AlbumIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/albums/update/1")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		AlbumDTO expected = new AlbumDTO(1L, "UpdatedName", new ArrayList<Track>(), art, gen, "UpdatedCover");
 		String expectedJSON = mapper.writeValueAsString(expected);
@@ -112,7 +118,8 @@ class AlbumIntegrationTest{
 
 	@Test
 	void testDeleteSuccess() throws Exception{
-		RequestBuilder mockRequest = delete("/albums/delete/1");
+		RequestBuilder mockRequest = delete("/albums/delete/1")
+			.header("Authorization", "Bearer " + token);
 		ResultMatcher matchStatus = status().isNoContent();
 		mock.perform(mockRequest).andExpect(matchStatus);
 	}
@@ -123,6 +130,7 @@ class AlbumIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/albums/create")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isBadRequest();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -141,6 +149,7 @@ class AlbumIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/albums/update/2")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isNotFound();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -152,6 +161,7 @@ class AlbumIntegrationTest{
 		String itemJSON = mapper.writeValueAsString(item);
 		RequestBuilder mockRequest = post("/albums/update/1")
 			.contentType(MediaType.APPLICATION_JSON)
+			.header("Authorization", "Bearer " + token)
 			.content(itemJSON);
 		ResultMatcher matchStatus = status().isBadRequest();
 		mock.perform(mockRequest).andExpect(matchStatus);
@@ -159,7 +169,8 @@ class AlbumIntegrationTest{
 
 	@Test
 	void testDeleteFail() throws Exception{
-		RequestBuilder mockRequest = delete("/albums/delete/2");
+		RequestBuilder mockRequest = delete("/albums/delete/2")
+			.header("Authorization", "Bearer " + token);
 		ResultMatcher matchStatus = status().isNotFound();
 		mock.perform(mockRequest).andExpect(matchStatus);
 	}
