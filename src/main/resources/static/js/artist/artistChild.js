@@ -42,7 +42,7 @@ function readAllItems(album, artist) {
     col.setAttribute("class", "col");
     container.appendChild(col);
     let link = document.createElement("a");
-    link.setAttribute("href", "albumChild.html?id=" + album.id)
+    link.setAttribute("href", "albumChild?id=" + album.id)
     link.setAttribute("class", "album");
 
     col.appendChild(link);

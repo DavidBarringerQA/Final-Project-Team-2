@@ -33,7 +33,7 @@ function readAllItems(data) {
     albumName.textContent = data.name;
 
     let artistLink = document.createElement("a");
-    artistLink.setAttribute("href", "artistChild.html?id=" + Object.keys(data.artist));
+    artistLink.setAttribute("href", "artistChild?id=" + Object.keys(data.artist));
     let artistNamePrint = document.createElement("h5");
     artistNamePrint.setAttribute("class", "display-5");
     artistNamePrint.setAttribute("style", "color: gray");
@@ -92,7 +92,7 @@ function readAllItems(data) {
     let song = document.createElement("a");
     song.setAttribute("class", "list-group-item list-group-item-action list-group-item-secondary");
     song.setAttribute("id", "songname");
-    song.setAttribute("href", "trackChild.html?id=" + data[i].id);
+    song.setAttribute("href", "trackChild?id=" + data[i].id);
     song.setAttribute("role", "tab");
     song.textContent = data[i].name;
     list.append(song);

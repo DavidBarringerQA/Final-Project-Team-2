@@ -49,7 +49,7 @@ function readAll(track, album) {
     let link = document.createElement("a");
     link.setAttribute("id", track.id);
     link.setAttribute("class", "tracks");
-    link.setAttribute("href", "trackChild.html?id=" + track.id);
+    link.setAttribute("href", "trackChild?id=" + track.id);
     link.setAttribute("style", "color: white; font-size: x-large;")
     link.appendChild(songName);
     row.appendChild(songName);

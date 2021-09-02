@@ -41,7 +41,7 @@ function readAll(data, genreID, genreName, artistNameText, artistID) {
     col2.setAttribute("class", "col-md-6");
     row2.appendChild(col2);
     let albumLink = document.createElement("a");
-    albumLink.setAttribute("href", "albumChild.html?id=" + Object.keys(data.album));
+    albumLink.setAttribute("href", "albumChild?id=" + Object.keys(data.album));
     let albumName = document.createElement("h5");
     albumName.setAttribute("class", "display-5");
     albumName.setAttribute("style", "color: gray");
@@ -56,7 +56,7 @@ function readAll(data, genreID, genreName, artistNameText, artistID) {
     col4.setAttribute("class", "col-md-6");
     row4.appendChild(col4);
     let genreLink = document.createElement("a");
-    genreLink.setAttribute("href", "genreChild.html?id=" + genreID);
+    genreLink.setAttribute("href", "genreChild?id=" + genreID);
     let genreNamePrint = document.createElement("h5");
     genreNamePrint.setAttribute("class", "display-5");
     genreNamePrint.setAttribute("style", "color: gray");
@@ -72,7 +72,7 @@ function readAll(data, genreID, genreName, artistNameText, artistID) {
     col3.setAttribute("class", "col-md-6");
     row3.appendChild(col3);
     let artistLink = document.createElement("a");
-    artistLink.setAttribute("href", "artistChild.html?id=" + artistID);
+    artistLink.setAttribute("href", "artistChild?id=" + artistID);
     let artistNamePrint = document.createElement("h5");
     artistNamePrint.setAttribute("class", "display-5");
     artistNamePrint.setAttribute("style", "color: gray");

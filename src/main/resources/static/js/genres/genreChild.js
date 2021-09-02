@@ -85,7 +85,7 @@ function readAll(track, album) {
     let link = document.createElement("a");
     link.setAttribute("id", track.id);
     link.setAttribute("class", "tracks");
-    link.setAttribute("href", "trackChild.html?id=" + track.id);
+    link.setAttribute("href", "trackChild?id=" + track.id);
     link.setAttribute("style", "color: white; font-size: x-large;")
     link.appendChild(songName);
     row.appendChild(songName);
@@ -97,7 +97,7 @@ function readAll(track, album) {
 
     let albumName = document.createElement("td");
     let albumLink = document.createElement("a");
-    albumLink.setAttribute("href", "albumChild.html?id=" + album.id);
+    albumLink.setAttribute("href", "albumChild?id=" + album.id);
     albumLink.setAttribute("style", "color: white; font-size: x-large;")
     albumLink.appendChild(albumName);
     row.appendChild(albumName);

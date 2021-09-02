@@ -35,6 +35,7 @@ public class UserController{
 
 	@PostMapping("/register")
 	public ResponseEntity<UserDTO> register(@RequestBody ChoonzUser user){
+		System.out.println("TEST");
 		return new ResponseEntity<>(service.register(user), HttpStatus.OK);
 	}
 }

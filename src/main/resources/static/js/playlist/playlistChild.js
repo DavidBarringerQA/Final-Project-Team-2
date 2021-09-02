@@ -84,7 +84,7 @@ function readAllItems(data) {
     let song = document.createElement("a");
     song.setAttribute("class", "list-group-item list-group-item-action list-group-item-secondary");
     song.setAttribute("id", "songname");
-    song.setAttribute("href", "trackChild.html?id=" + data[i].id);
+    song.setAttribute("href", "trackChild?id=" + data[i].id);
     song.setAttribute("role", "tab");
     song.textContent = data[i].name;
     list.append(song);
