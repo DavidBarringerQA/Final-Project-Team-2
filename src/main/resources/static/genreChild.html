@@ -18,22 +18,23 @@
 </div>
 
 <!-- Search -->
-<div id="search-child">
+<div class="container">
+<div id="search-artist">
     <div class="col-md-4" style="align-content: center;">
         <div class="input-group" id="search-feature">
-            <input type="search" class="form-control rounded" placeholder="Search for a song..." aria-label="Search"
-                aria-describedby="search-addon" />
-            <button style="margin-left: 6px;" type="button" class="btn btn-outline-success">search</button>
-        </div>
+            <input type="search" class="form-control rounded" placeholder="Search for a track..." aria-label="Search"
+                aria-describedby="search-addon" id="search-input" />
+              <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-outline-dark">search</button>
+          </div>
     </div>
-</div>
 </div>
 <!-- /Search -->
 
-<div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4" id="genre-list"></div>
-    <table class="table table-dark" id="track-table">
-    </table>
+        <div id="body-container">
+            <table class="table table-dark" id="track-table"></table>
+            <table class="table table-dark" id="search-list"></table>
+        </div>
 </div>
 
     </body>
@@ -48,6 +49,7 @@
             crossorigin="anonymous"></script>
         <script type="text/javascript" src="../js/header.js"></script>
         <script type="text/javascript" src="../js/genres/genreChild.js"></script>
+        <script type="text/javascript" src="../js/tracks/trackSearch.js"></script>
     </footer>
 
 </html>
