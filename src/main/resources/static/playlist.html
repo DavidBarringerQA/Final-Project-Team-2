@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Choonz Music</title>
+    <div id="header"></div>
+</head>
+
+<body>
+    
+    <div id="main-container">
+        
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="playlist-list">
+                
+            </div>
+
+            <div class="col-md-6" id="playlist-songs">
+                <button style="margin-top: 10pt; margin-bottom: 10pt" type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add track</button>
+                <button style="margin-top: 10pt; margin-bottom: 10pt" type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete delete</button>
+            
+            </div>
+        </div>
+        </div>
+
+  <!-- Modal Add -->
+  <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add a track to the playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px" id="read-tracks-playlist">
+          <option selected disabled>Choose a track</option>
+        </select>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+        <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+          data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following track?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="track-add"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+        <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal Add -->
+
+<!-- Modal Delete -->
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Delete a track</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <select class="browser-default custom-select" style="width: 100%; margin-bottom: 8px" id="read-this-playlist">
+            <option selected disabled>Choose a track</option>
+          </select>
+    </div>
+    <div class="modal-footer">
+      <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+        data-dismiss="modal">Close</button>
+        <button id="delete-inputs" type="submit" class="btn btn-danger" data-toggle="modal"
+        data-target="#ModalDeleteConfirmation" data-dismiss="modal">Delete</button>
+    </div>
+  </div>
+</div>
+</div>
+<div class="modal fade" id="ModalDeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete the following track?</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p id="delete-entry"></p>
+  </div>
+  <div class="modal-footer">
+    <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+      data-dismiss="modal">Close</button>
+      <button id="delete-btn" type="submit" class="btn btn-danger">Confirm Delete</button>
+  </div>
+</div>
+</div>
+</div>
+<!-- /Modal Delete -->
+
+</body>
+
+<footer>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../js/header.js"></script>
+    <script type="text/javascript" src="../js/playlist/playlistChild.js"></script>
+    <script type="text/javascript" src="../js/playlist/playlistDropdown.js"></script>
+    <script type="text/javascript" src="../js/playlist/playlistChildModal.js"></script>
+    <script type="text/javascript" src="../js/playlist/playlistAddTrack.js"></script>
+    <script type="text/javascript" src="../js/playlist/playlistDeleteTrack.js"></script>
+
+</footer>
+
+</html>

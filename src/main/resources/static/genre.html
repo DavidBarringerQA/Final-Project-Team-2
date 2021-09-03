@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="./css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <title>Choonz Music</title>
+  <div id="header"></div>
+</head>
+
+<body>
+  <div id="main-container">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="display-3">Choonz Genres</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div id="search-genre">
+    <div class="row">
+      <div class="col-md-3" style="align-content: left;">
+        <div class="input-group" id="search-feature">
+          <input type="search" class="form-control rounded" placeholder="Search for a genre..." aria-label="Search"
+              aria-describedby="search-addon" id="search-input" />
+            <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-outline-dark">search</button>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div id="crud-genre">
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add genre</button>
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete
+            genre</button>
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update
+            genre</button>
+        </div>
+      </div>
+    </div>
+    <div style="display: none" id="no-results">
+      <p>No results found</p>
+    </div>
+  </div>
+  <!-- /Search -->
+
+  <!-- Modal Delete -->
+  <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete a Genre</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="delete-name"
+            placeholder="Enter the name of the genre to delete...">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+            <button id="delete-inputs" type="submit" class="btn btn-danger" data-toggle="modal"
+            data-target="#ModalDeleteConfirmation" data-dismiss="modal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ModalDeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete the following genre?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="delete-entry"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- /Modal Delete -->
+
+  <!-- Modal Update -->
+  <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update a Genre</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"
+            placeholder="Insert the name of genre to be updated">
+            <input style="margin-bottom: 8px;" type="text" class="form-control" id="new-name"
+            placeholder="Update genre name">
+          <input type="text" class="form-control" id="update-description" placeholder="Update genre description">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+            <button id="update-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalUpdateConfirmation" data-dismiss="modal">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ModalUpdateConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to run the following updates?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>To: </b></p>
+        <p id="old-name"></p>
+        <p><b>Updates: </b></p>
+        <p id="update-to"></p>
+        <p id="update-des"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-success">Confirm Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- /Modal Update -->
+
+  <!-- Modal Add -->
+  <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add a Genre</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"
+            placeholder="Enter genre name">
+          <input type="text" class="form-control" id="add-description" placeholder="Enter genre description">
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following genre?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="genre-name"></p>
+        <p id="genre-description"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="add-btn" type="submit" class="btn btn-success">Confirm Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- /Modal Add -->
+
+    <div id="body-container">
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="genre-list"></div>
+      <div class="row row-cols-1 row-cols-md-3 g-4" id="search-list"></div>
+    </div>
+
+</body>
+
+<footer>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../js/header.js"></script>
+  <script type="text/javascript" src="../js/genres/genreRead.js"></script>
+  <script type="text/javascript" src="../js/genres/genreDelete.js"></script>
+  <script type="text/javascript" src="../js/genres/genreAdd.js"></script>
+  <script type="text/javascript" src="../js/genres/genreUpdate.js"></script>
+  <script type="text/javascript" src="../js/genres/genreModal.js"></script>
+  <script type="text/javascript" src="../js/genres/genreSearch.js"></script>
+</footer>
+
+</html>

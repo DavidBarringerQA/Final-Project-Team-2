@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<base href="/">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Choonz Music</title>
+    <div id="header"></div>
+</head>
+
+<!-- Search -->
+<body>
+  <!-- Search -->
+  <div id="search-playlist">
+    <div class="row">
+    <div class="col-md-3" style="align-content: left;">
+      <div class="input-group" id="search-feature">
+        <input type="search" class="form-control rounded" placeholder="Search for a playlist..." aria-label="Search"
+          aria-describedby="search-addon" id="search-input" />
+        <button style="margin-left: 6px;" id="search-btn" type="button" class="btn btn-dark">search</button>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div id="crud-genre">
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalAdd">Add playlist</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDelete">Delete playlist</button>
+      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalUpdate">Update playlist</button>
+      </div>
+    </div>
+  </div>
+  <div style="display: none" id="no-results">
+    <p>No results found</p>
+  </div>
+  </div>
+  <!-- /Search -->
+
+  <!-- cards -->
+  <div id="body-container">
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="playlist-list"></div>
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="search-list"></div>
+  </div>
+  <!-- /cards -->
+
+  <!-- Modal Add -->
+<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add a playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="add-name"  placeholder="Enter playlist name">
+        <textarea style="margin-bottom: 8px;" class="form-control" id="add-description" rows="3" placeholder="Enter playlist description"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="add-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalAddConfirmation" data-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalAddConfirmation" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to add the following playlist?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="playlist-name-add"></p>
+          <p id="playlist-description-add"></p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+            data-dismiss="modal">Close</button>
+          <button id="add-btn" type="submit" class="btn btn-success">Confirm add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- /Modal Add -->
+
+<!-- Modal Delete -->
+<div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete a Playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="delete-name"  placeholder="Enter the name of the playlist to delete...">
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="delete-inputs" type="submit" class="btn btn-danger" data-toggle="modal"
+            data-target="#ModalDeleteConfirmation" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalDeleteConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete the following playlist?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="delete-entry"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="delete-btn" type="submit" class="btn btn-danger">Confirm Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal Delete -->
+
+<!-- Modal Update -->
+<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Update a playlist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-old-name"
+            placeholder="Insert the name of the playlist to be updated">
+            <input style="margin-bottom: 8px;" type="text" class="form-control" id="update-name"
+            placeholder="Update playlist name">
+          <input type="text" class="form-control" id="update-description" placeholder="Update playlist description">
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="update-inputs" type="submit" class="btn btn-success" data-toggle="modal"
+            data-target="#ModalUpdateConfirmation" data-dismiss="modal">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalUpdateConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to run the following updates?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>To: </b></p>
+        <p id="old-name"></p>
+        <p><b>Updates: </b></p>
+        <p id="update-to"></p>
+        <p id="update-des"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="close-modal" onClick="window.location.reload(true)" type="button" class="btn btn-secondary"
+          data-dismiss="modal">Close</button>
+          <button id="update-btn" type="submit" class="btn btn-success">Confirm Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Modal Update -->
+</body>
+
+<footer>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../js/header.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistRead.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistAdd.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistModal.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistDelete.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistUpdate.js"></script>
+  <script type="text/javascript" src="../js/playlist/playlistSearch.js"></script>
+</footer>
+
+<style>
+  body {
+  background: 
+      linear-gradient(180deg, rgba(248, 184, 139,0) 20%, rgba(248, 184, 139,.1) 20%, rgba(248, 184, 139,.1) 40%),
+      linear-gradient(45deg, rgba(250, 248, 132,.3) 20%, rgba(250, 248, 132,.4) 20%, rgba(250, 248, 132,.4) 40%, rgba(250, 248, 132,.5) 40%, rgba(250, 248, 132,.5) 60%, rgba(250, 248, 132,.6) 60%, rgba(250, 248, 132,.6) 80%, rgba(250, 248, 132,.7) 80%),
+      linear-gradient(-45deg, rgba(186, 237, 145,0) 20%, rgba(186, 237, 145,.1) 20%, rgba(186, 237, 145,.1) 40%, rgba(186, 237, 145,.2) 40%, rgba(186, 237, 145,.2) 60%, rgba(186, 237, 145,.4) 60%, rgba(186, 237, 145,.4) 80%, rgba(186, 237, 145,.6) 80%),
+      linear-gradient(90deg, rgba(178, 206, 254,0) 20%, rgba(178, 206, 254,.3) 20%, rgba(178, 206, 254,.3) 40%, rgba(178, 206, 254,.5) 40%, rgba(178, 206, 254,.5) 60%, rgba(178, 206, 254,.7) 60%, rgba(178, 206, 254,.7) 80%, rgba(178, 206, 254,.8) 80%),
+      linear-gradient(-90deg, rgba(242, 162, 232,0) 20%, rgba(242, 162, 232,.4) 20%, rgba(242, 162, 232,.4) 40%, rgba(242, 162, 232,.5) 40%, rgba(242, 162, 232,.5) 60%, rgba(242, 162, 232,.6) 60%, rgba(242, 162, 232,.6) 80%, rgba(242, 162, 232,.8) 80%),
+      linear-gradient(180deg, rgba(254, 163, 170,0) 20%, rgba(254, 163, 170,.4) 20%, rgba(254, 163, 170,.4) 40%, rgba(254, 163, 170,.6) 40%, rgba(254, 163, 170,.6) 60%, rgba(254, 163, 170,.8) 60%, rgba(254, 163, 170,.8) 80%, rgba(254, 163, 170,.9) 80%)
+  ;
+  }
+</style>
+
+</html>

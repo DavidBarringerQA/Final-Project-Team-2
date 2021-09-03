@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS album (id bigint AUTO_INCREMENT, cover varchar(255), NAME varchar(100) NOT null, artist_id bigint, genre_id bigint, PRIMARY KEY (id));
+CREATE TABLE IF NOT EXISTS artist (id bigint  AUTO_INCREMENT, NAME varchar(100) NOT null, PRIMARY KEY (id));
+CREATE TABLE IF NOT EXISTS genre (id bigint  AUTO_INCREMENT, description varchar(250) NOT null, NAME varchar(100) NOT null, PRIMARY KEY (id));
+CREATE TABLE IF NOT EXISTS playlist (id bigint  AUTO_INCREMENT, artwork varchar(1000) NOT null, description varchar(500) NOT null, NAME varchar(100) NOT null, PRIMARY KEY (id));
+CREATE TABLE IF NOT EXISTS track (id bigint AUTO_INCREMENT, duration integer NOT null, lyrics varchar(255), NAME varchar(100) NOT null, album_id bigint, playlist_id bigint, PRIMARY KEY (id));
+CREATE TABLE IF NOT EXISTS choonz_user (id bigint AUTO_INCREMENT, password varchar(255), ROLE varchar(255), username varchar(255) NOT null, PRIMARY KEY (id));
+
+ALTER TABLE choonz_user ADD CONSTRAINT UK_aoa0ibsbutq1yhyn0m8m7j1e UNIQUE (username);
+ALTER TABLE album ADD CONSTRAINT UK_7io8ua6qgnb7yjn96tvrakvsk UNIQUE (NAME);
+ALTER TABLE artist ADD CONSTRAINT UK_r03a96lqhsb7djq2tn4rq60vn UNIQUE (NAME);
+ALTER TABLE genre ADD CONSTRAINT UK_dy2vbbbf0mb52fy9tks9anm3k UNIQUE (description);
+ALTER TABLE genre ADD CONSTRAINT UK_ctffrbu4484ft8dlsa5vmqdka UNIQUE (NAME);
+ALTER TABLE playlist ADD CONSTRAINT UK_swyw77f2jscjvdd29t0s2jvfv UNIQUE (artwork);
+ALTER TABLE playlist ADD CONSTRAINT UK_rqydw3x69vu1xbk7m6flxi0bk UNIQUE (description);
+ALTER TABLE playlist ADD CONSTRAINT UK_gmx0jjome08oqihtks37w0lea UNIQUE (NAME);
+ALTER TABLE track ADD CONSTRAINT UK_33mfukvakfr3t9ri1og4jhg4l UNIQUE (NAME);
+ALTER TABLE album ADD CONSTRAINT FKmwc4fyyxb6tfi0qba26gcf8s1 FOREIGN KEY (artist_id) REFERENCES artist;
+ALTER TABLE album ADD CONSTRAINT FKmhihrmrx2f1mhqtrbagwru45g FOREIGN KEY (genre_id) REFERENCES genre;
+ALTER TABLE track ADD CONSTRAINT FKaxm9pbgk7ptorfyk3o6911q05 FOREIGN KEY (album_id) REFERENCES album;
+ALTER TABLE track ADD CONSTRAINT FKnebkq7qmpex9wivvxbfqtlkl4 FOREIGN KEY (playlist_id) REFERENCES playlist;
