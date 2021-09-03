@@ -172,7 +172,6 @@ final static String URL ="http://localhost:8082";
 	WebElement deleteInputsBtn;
 	public void deleteATrack(String delete) {
      deletetrackbox.sendKeys(delete);
-     System.out.println("textvalue " + deleteInputsBtn.getText());
      Actions action = new Actions(driver);
      action.moveToElement(deleteInputsBtn).click().perform();
 	}

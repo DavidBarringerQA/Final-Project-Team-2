@@ -167,7 +167,7 @@ public class TracksStepDefs {
 	@And("Enter the name of the track i want to delete {string}")
 	public void enter_the_name_of_the_track_i_want_to_delete(String string) throws InterruptedException {
 	  page.deleteATrack(string);
-	  Thread.sleep(100);
+	  Thread.sleep(200);
 	}
 	
 	@And("click confirm track delete")

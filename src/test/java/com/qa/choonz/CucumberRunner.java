@@ -8,10 +8,12 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		 features = { "classpath:src/test/resources/Features/Artists/artistCreate.feature" },
-		 glue = { "classpath:com.qa.choonz.ArtistStepDefs" }
+		 features = { "classpath:Features" },
+		 glue = { "classpath:com.qa.choonz" },
+		 snippets = SnippetType.CAMELCASE,
+		 monochrome = true
 		 )
 
-public class ArtistRunner {
+public class CucumberRunner {
 
 }

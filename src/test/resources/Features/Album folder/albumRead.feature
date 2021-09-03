@@ -7,7 +7,7 @@ Feature: Read an album
 
   Scenario:
   
-    When I click the search bar and enter the album name "AM"
+    When I click the search bar and enter the album name "Astroworld"
     And I click the search album button
     Then The album will appear in the search results
 
